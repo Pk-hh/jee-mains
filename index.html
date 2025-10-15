@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered JEE Advanced Mock Exam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- KaTeX for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMGmJoZBTT7LAYFXmEu8rTqsvDBiJRKLCpDSRMAqLr_mDRYFe" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCACeUdcgtQLQRYoI+Yt/mCM5vcfiJUSN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURPiLdVouFUNCTION" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eaf0f4;
+        }
+        body.setup-active {
+             background-image: url('https://images.unsplash.com/photo-1618172193622-ae2d025f4032?q=80&w=2070&auto=format&fit=crop');
+             background-size: cover;
+             background-position: center;
+             overflow-y: auto;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 1rem;
+            height: calc(100vh - 125px); /* Adjusted for header and footer */
+        }
+
+        .paper-card {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .paper-card:not(.locked):hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .paper-card.locked {
+            background-color: rgba(0, 0, 0, 0.3);
+            cursor: not-allowed;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .paper-card.completed {
+            background-color: rgba(46, 204, 113, 0.3);
+            border-color: rgba(46, 204, 113, 0.8);
+        }
+        
+        .status-shape { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; position: relative; }
+        .shape-answered { background-color: #2ecc71; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); }
+        .shape-not-answered { background-color: #e74c3c; clip-path: polygon(18% 0%, 82% 0%, 100% 62%, 50% 100%, 0% 62%); }
+        .shape-not-visited { background-color: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 4px; }
+        .shape-marked { background-color: #9b59b6; border-radius: 50%; }
+        .shape-answered-marked { background-color: #9b59b6; border-radius: 50%; }
+        .shape-answered-marked::after { content: ''; position: absolute; bottom: 3px; right: 3px; width: 8px; height: 8px; background-color: #2ecc71; border-radius: 50%; border: 1px solid white; }
+
+        .question-palette-btn { width: 38px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: 500; transition: all 0.2s ease-in-out; border: 1px solid #ccc; border-radius: 4px; color: #333; background-color: #f0f0f0; }
+        .palette-answered { background-color: #2ecc71; color: white; border-color: #2ecc71; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); border-radius: 0;}
+        .palette-not-answered { background-color: #e74c3c; color: white; border-color: #e74c3c; clip-path: polygon(18% 0%, 82% 0%, 100% 62%, 50% 100%, 0% 62%); border-radius: 0;}
+        .palette-marked { background-color: #9b59b6; color: white; border-color: #9b59b6; border-radius: 50%;}
+        .palette-answered-marked { background-color: #9b59b6; color: white; position: relative; border-color: #9b59b6; border-radius: 50%;}
+        .palette-answered-marked::after { content: ''; position: absolute; bottom: 4px; right: 4px; width: 8px; height: 8px; background-color: #2ecc71; border-radius: 50%;}
+        .palette-current { background-color: #e74c3c; color: white; border-color: #c0392b; clip-path: polygon(18% 0%, 82% 0%, 100% 62%, 50% 100%, 0% 62%); border-radius: 0;}
+        
+        .main-header { background: linear-gradient(to right, #2c3e50, #34495e); }
+        .action-btn { background-color: #3498db; color: white; padding: 8px 16px; border-radius: 4px; border: none; font-weight: 500; transition: background-color 0.2s; }
+        .action-btn:hover { background-color: #2980b9; }
+        .secondary-btn { background-color: #ecf0f1; color: #333; border: 1px solid #bdc3c7; }
+        .secondary-btn:hover { background-color: #dbe0e2; }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        #calculator-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background-color: #E0E0E0; border-radius: 0.5rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1); width: 530px; border: 1px solid #BDBDBD; }
+        #calculator-header { cursor: move; background-color: #4285F4; padding: 0.5rem 1rem; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; display: flex; justify-content: space-between; align-items: center; color: white; }
+        #calculator-header-buttons button, #calculator-header-buttons span { color: white; background: none; border: none; font-size: 1.2rem; margin-left: 0.5rem; }
+        #calculator-header-buttons .help-btn { background-color: #5a95f5; font-size: 0.8rem; padding: 0.2rem 0.8rem; border-radius: 0.25rem; }
+        #calculator-display-container { background-color: white; padding: 0.5rem; border-radius: 0.25rem; margin: 0.5rem; border: 1px solid #BDBDBD; }
+        #calculator-history-display, #calculator-main-display { width: 100%; background: none; border: none; text-align: right; color: #212121; }
+        #calculator-history-display { height: 25px; font-size: 0.9rem; color: #757575; }
+        #calculator-main-display { height: 45px; font-size: 2rem; font-weight: 500; }
+        #calculator-controls { padding: 0 0.5rem 0.5rem; }
+        #calculator-buttons { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+        .calc-btn { background-color: #f5f5f5; border: 1px solid #E0E0E0; border-radius: 0.25rem; padding: 0.5rem 0; font-size: 0.85rem; font-weight: 500; transition: background-color 0.2s; position: relative; }
+        .calc-btn:hover { background-color: #E0E0E0; }
+        .calc-btn.memory-btn { background-color: #EEEEEE; }
+        .calc-btn.op-btn-dark { background-color: #EEEEEE; }
+        .calc-btn.op-btn-red { background-color: #D32F2F; color: white; }
+        .calc-btn.op-btn-red:hover { background-color: #C62828; }
+        .calc-btn.equals-btn { background-color: #4CAF50; color: white; grid-row: span 2; height: 100%; }
+        .calc-btn.equals-btn:hover { background-color: #43A047; }
+        .calc-btn.zero-btn { grid-column: span 2; }
+        #deg-rad-group { display: flex; align-items: center; padding: 0.2rem 0; grid-column: span 5; }
+        #deg-rad-group label { margin: 0 0.5rem 0 0.2rem; font-size: 0.9rem; }
+        .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 50; display: flex; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); max-width: 500px; width: 100%; }
+        .katex { font-size: 1.1em; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div id="app" class="max-w-full mx-auto">
+        <!-- Screens that are hidden/shown -->
+        <div id="setup-screen">
+             <div class="min-h-screen flex flex-col items-center justify-center p-4">
+                <div class="text-center mb-8">
+                     <h1 class="text-4xl font-bold text-white mb-2">JEE Main Mock Exams</h1>
+                     <p class="text-white/80">Complete the papers in order to unlock the next one.</p>
+                </div>
+                <div id="paper-selection-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4 max-w-7xl w-full">
+                    <!-- Paper cards will be injected here by JS -->
+                </div>
+            </div>
+        </div>
+        <div id="loading-screen" class="hidden text-center mt-32">
+            <div class="flex justify-center items-center mb-4"><svg class="animate-spin h-10 w-10 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></div>
+            <p class="text-xl font-semibold text-gray-700">Loading Exam...</p>
+        </div>
+         <div id="results-screen" class="hidden p-4">
+             <div class="bg-white shadow-md rounded-lg p-8 max-w-4xl mx-auto mt-8"><h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Exam Results</h1><div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8 text-center"><div class="bg-blue-100 p-4 rounded-lg"><p class="text-lg font-semibold text-blue-800">Final Score</p><p id="final-score" class="text-4xl font-bold text-blue-600">0</p></div><div class="bg-green-100 p-4 rounded-lg"><p class="text-lg font-semibold text-green-800">Correct</p><p id="correct-answers" class="text-4xl font-bold text-green-600">0</p></div><div class="bg-red-100 p-4 rounded-lg"><p class="text-lg font-semibold text-red-800">Incorrect</p><p id="incorrect-answers" class="text-4xl font-bold text-red-600">0</p></div></div><h2 class="text-2xl font-bold text-gray-700 mb-4">Review Your Answers</h2><div id="review-container" class="space-y-4 max-h-96 overflow-y-auto border p-4 rounded-lg custom-scrollbar"></div><div class="text-center mt-8"><button id="back-to-selection-btn" class="action-btn">Back to Paper Selection</button></div></div>
+        </div>
+
+        <!-- Main Exam Screen -->
+        <div id="exam-screen" class="hidden">
+            <!-- New Header -->
+            <header class="main-header p-2 shadow-lg">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <img src="https://placehold.co/150x40/FFFFFF/2c3e50?text=JEE+Mains" alt="JEE Logo" class="h-10">
+                        <img src="https://placehold.co/150x40/FFFFFF/2c3e50?text=GIITS+VSKP" alt="IITK Logo" class="h-10">
+                    </div>
+                    <div id="exam-title" class="text-white text-lg font-semibold">
+                        JEE Main Mock Exam
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-white flex items-center space-x-2"><i class="fas fa-info-circle"></i><span>Instructions</span></button>
+                        <button class="text-white flex items-center space-x-2"><i class="fas fa-file-alt"></i><span>Question Paper</span></button>
+                        <button id="calculator-toggle-btn" class="text-white flex items-center space-x-2"><i class="fas fa-calculator"></i><span>Calculator</span></button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Sub Header -->
+            <div class="bg-white p-2 flex justify-between items-center shadow-md">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 text-white font-semibold py-1 px-3 rounded-md">JEE Main 2026... <i class="fas fa-times ml-2 cursor-pointer"></i></div>
+                </div>
+                <div class="text-lg font-semibold">
+                    Time Left: <span id="timer" class="font-bold text-red-600">00:00:00</span>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="p-2">
+                <div class="main-container">
+                    <!-- Left Panel -->
+                    <div class="bg-white rounded-md shadow-sm flex flex-col">
+                        <div class="p-2 bg-gray-100 border-b flex items-center space-x-2 overflow-x-auto"><span class="font-semibold text-gray-700">Sections:</span><div id="section-tabs-container" class="flex items-center space-x-1"></div></div>
+                        <div class="p-4 flex-grow flex flex-col"><div class="flex justify-between items-center mb-3 text-sm"><div><span class="font-bold">Question Type:</span> <span id="question-type">MCQ</span></div><div class="flex items-center space-x-4"><span><span class="font-semibold">Marks for correct:</span> <span class="text-green-600 font-bold">4</span></span><span><span class="font-semibold">Negative Marks:</span> <span class="text-red-600 font-bold">-1</span></span><div class="flex items-center"><label for="lang-select" class="mr-2">View in:</label><select id="lang-select" class="border rounded-md px-2 py-1"><option>English</option></select></div></div></div><div id="question-container" class="border rounded-md p-4 bg-white flex-grow mb-4 overflow-y-auto custom-scrollbar"><p class="font-bold mb-2">Question No. <span id="question-number">1</span></p><div id="question-content"></div></div><div id="options-container" class="space-y-3 mb-4"></div><div class="border-t pt-3 mt-auto flex items-center justify-between"><div><button id="mark-review-btn" class="action-btn secondary-btn">Mark for Review & Next</button><button id="clear-response-btn" class="action-btn secondary-btn ml-2">Clear Response</button></div><div class="flex items-center space-x-2"><button id="previous-btn" class="action-btn secondary-btn">Previous</button><button id="save-next-btn" class="action-btn">Save & Next</button></div></div></div>
+                    </div>
+                    
+                    <!-- Right Panel - Updated HTML Structure -->
+                    <div class="bg-white rounded-md shadow-sm flex flex-col p-3">
+                        <div class="flex items-center space-x-3 border-b pb-2">
+                            <img src="https://placehold.co/60x60/E2E8F0/4A5568?text=s" alt="User Avatar" class="rounded-full">
+                            <span class="font-bold text-lg">Student</span>
+                        </div>
+
+                        <!-- New Legend -->
+                        <div id="legend-container" class="my-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm items-center">
+                            <div class="flex items-center space-x-2">
+                                <div class="status-shape shape-answered"><span id="answered-count">0</span></div>
+                                <span>Answered</span>
+                            </div>
+                             <div class="flex items-center space-x-2">
+                                <div class="status-shape shape-not-answered"><span id="not-answered-count">0</span></div>
+                                <span>Not Answered</span>
+                            </div>
+                             <div class="flex items-center space-x-2">
+                                <div class="status-shape shape-not-visited"><span id="not-visited-count">0</span></div>
+                                <span>Not Visited</span>
+                            </div>
+                             <div class="flex items-center space-x-2">
+                                <div class="status-shape shape-marked"><span id="marked-count">0</span></div>
+                                <span>Marked</span>
+                            </div>
+                            <div class="col-span-2 flex items-center space-x-2">
+                                <div class="status-shape shape-answered-marked"></div>
+                                <span>Answered & Marked</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t pt-2">
+                            <h3 id="current-section-title" class="font-bold text-center py-2 bg-blue-100 border-b-2 border-blue-500">Physics</h3>
+                            <p class="text-sm font-semibold text-center my-2">Choose a Question</p>
+                            <div id="question-palette" class="grid grid-cols-5 gap-2 custom-scrollbar overflow-y-auto" style="max-height: calc(100vh - 500px);">
+                                <!-- Palette buttons injected here -->
+                            </div>
+                        </div>
+
+                        <div class="mt-auto pt-3 border-t">
+                            <button id="submit-btn" class="w-full action-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-gray-200 text-center text-xs py-1 fixed bottom-0 w-full">&copy;Designed and  Developed by electrON Studios</footer>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="submit-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold mb-4">Confirm Submission</h3>
+            <p class="text-gray-600 mb-6">Are you sure you want to submit the exam?</p>
+            <div class="flex justify-end space-x-3">
+                <button id="cancel-submit-btn" class="action-btn secondary-btn">Cancel</button>
+                <button id="confirm-submit-btn" class="action-btn">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div id="calculator-modal" class="hidden">
+        <div id="calculator-header">
+            <span class="font-bold">Scientific Calculator</span>
+            <div id="calculator-header-buttons">
+                <button class="help-btn">Help</button>
+                <span>-</span>
+                <button id="calculator-close-btn">&times;</button>
+            </div>
+        </div>
+        <div id="calculator-display-container">
+            <input type="text" id="calculator-history-display" disabled>
+            <input type="text" id="calculator-main-display" value="0" disabled>
+        </div>
+        <div id="calculator-controls">
+            <div id="calculator-buttons">
+                 <div id="deg-rad-group">
+                    <button class="calc-btn" data-op="%">mod</button>
+                    <input type="radio" id="deg" name="angle" value="DEG" checked><label for="deg">Deg</label>
+                    <input type="radio" id="rad" name="angle" value="RAD"><label for="rad">Rad</label>
+                </div>
+                 <button class="calc-btn memory-btn" data-calc="mclear">MC</button>
+                 <button class="calc-btn memory-btn" data-calc="mrecall">MR</button>
+                 <button class="calc-btn memory-btn" data-calc="mstore">MS</button>
+                 <button class="calc-btn memory-btn" data-calc="madd">M+</button>
+                 <button class="calc-btn memory-btn" data-calc="msub">M-</button>
+                <button class="calc-btn" data-func="sinh">sinh</button>
+                <button class="calc-btn" data-func="cosh">cosh</button>
+                <button class="calc-btn" data-func="tanh">tanh</button>
+                <button class="calc-btn" data-calc="exp">Exp</button>
+                <button class="calc-btn" data-calc="lparen">(</button>
+                <button class="calc-btn" data-calc="rparen">)</button>
+                <button class="calc-btn op-btn-dark" data-calc="backspace">&larr;</button>
+                <button class="calc-btn op-btn-red" data-calc="clear-entry">CE</button>
+                <button class="calc-btn op-btn-red" data-calc="clear">C</button>
+                <button class="calc-btn op-btn-dark" data-calc="negate">+/-</button>
+                <button class="calc-btn" data-func="asinh">sinh⁻¹</button>
+                <button class="calc-btn" data-func="acosh">cosh⁻¹</button>
+                <button class="calc-btn" data-func="atanh">tanh⁻¹</button>
+                <button class="calc-btn" data-func="log2">log₂x</button>
+                <button class="calc-btn" data-func="ln">ln</button>
+                <button class="calc-btn" data-func="log10">log</button>
+                <button class="calc-btn" data-num="7">7</button>
+                <button class="calc-btn" data-num="8">8</button>
+                <button class="calc-btn" data-num="9">9</button>
+                <button class="calc-btn op-btn-dark" data-op="/">/</button>
+                <button class="calc-btn" data-const="pi">π</button>
+                <button class="calc-btn" data-const="e">e</button>
+                <button class="calc-btn" data-func="factorial">n!</button>
+                <button class="calc-btn" data-op="^">xʸ</button>
+                <button class="calc-btn" data-func="pow10">10ˣ</button>
+                <button class="calc-btn" data-func="pow2">x²</button>
+                <button class="calc-btn" data-num="4">4</button>
+                <button class="calc-btn" data-num="5">5</button>
+                <button class="calc-btn" data-num="6">6</button>
+                <button class="calc-btn op-btn-dark" data-op="*">*</button>
+                 <button class="calc-btn" data-func="sin">sin</button>
+                 <button class="calc-btn" data-func="cos">cos</button>
+                 <button class="calc-btn" data-func="tan">tan</button>
+                 <button class="calc-btn" data-func="pow3">x³</button>
+                 <button class="calc-btn" data-func="cbrt">³√x</button>
+                 <button class="calc-btn" data-func="abs">|x|</button>
+                 <button class="calc-btn" data-num="1">1</button>
+                 <button class="calc-btn" data-num="2">2</button>
+                 <button class="calc-btn" data-num="3">3</button>
+                 <button class="calc-btn op-btn-dark" data-op="-">-</button>
+                 <button class="calc-btn" data-func="asin">sin⁻¹</button>
+                 <button class="calc-btn" data-func="acos">cos⁻¹</button>
+                 <button class="calc-btn" data-func="atan">tan⁻¹</button>
+                 <button class="calc-btn" data-op="yroot">ʸ√x</button>
+                 <button class="calc-btn" data-func="reciprocal">1/x</button>
+                 <button class="calc-btn" data-func="sqrt">√</button>
+                 <button class="calc-btn zero-btn" data-num="0">0</button>
+                 <button class="calc-btn" data-num=".">.</button>
+                 <button class="calc-btn op-btn-dark" data-op="+">+</button>
+                 <button class="calc-btn" data-func="percent" style="grid-column: span 5;">%</button>
+                 <button class="calc-btn equals-btn" data-calc="equals" style="grid-column: span 5; grid-row: span 2;">=</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // --- GLOBAL STATE ---
+    let allPapersData = []; let examData = { sections: [], questions: [] }; let state = []; let currentPaperIndex = 0; let currentSectionIndex = 0; let currentQuestionIndex = 0; let timerInterval; let isReviewMode = false;
+    const allScreens = ['setup-screen', 'loading-screen', 'exam-screen', 'results-screen'];
+    
+    // --- MOCK DATA GENERATION ---
+    function generateMockPapers() {
+        allPapersData = []; // Clear previous data
+        const paper1 = {
+            questions: [
+                 // Physics
+                { section: "Physics", content: "\\(P + a/V^2 (V - b) = RT\\) represents the equation of state of some gases. Where P is the pressure, V is the volume, T is the temperature and a, b, R are the constants. The physical quantity, which has dimensional formula as that of \\(b^2/a\\), will be:", options: ["Bulk modulus", "Modulus of rigidity", "Compressibility", "Energy density"], answer: "Compressibility" },
+                { section: "Physics", content: "An object moves with speed \\(v_1, v_2,\\) and \\(v_3\\) along a line segment AB, BC and CD respectively. Where AB = BC and AD = 3AB, then average speed of the object will be:", options: ["\\((v_1 + v_2 + v_3)/3\\)", "\\(v_1v_2v_3 / (3v_1v_2 + v_2v_3 + v_3v_1)\\)", "\\(3v_1v_2v_3 / (v_1v_2 + v_2v_3 + v_3v_1)\\)", "\\((v_1 + v_2 + v_3) / (3v_1v_2v_3)\\)"], answer: "\\(3v_1v_2v_3 / (v_1v_2 + v_2v_3 + v_3v_1)\\)" },
+                { section: "Physics", content: "A child stands on the edge of the cliff 10 m above the ground and throws a stone horizontally with an initial speed of \\(5 m s^{-1}\\). Neglecting the air resistance, the speed with which the stone hits the ground will be _____ \\(m s^{-1}\\) (given, \\(g = 10 m s^{-2}\\)).", options: ["20", "15", "30", "25"], answer: "15" },
+                { section: "Physics", content: "A block of mass 5 kg is placed at rest on a table of rough surface. Now, if a force of 30 N is applied in the direction parallel to surface of the table, the block slides through a distance of 50 m in an interval of time 10 s. Coefficient of kinetic friction is (given, \\(g = 10 m s^{-2}\\)):", options: ["0.60", "0.75", "0.50", "0.25"], answer: "0.50" },
+                { section: "Physics", content: "If earth has a mass nine times and radius twice to that of a planet P. Then \\(v_e / (3\\sqrt{x}) ms^{-1}\\) will be the minimum velocity required by a rocket to pull out of gravitational force of P, where \\(v_e\\) is escape velocity on earth. The value of x is:", options: ["2", "3", "18", "1"], answer: "2" },
+                { section: "Physics", content: "Given below are two statements:<br><b>Statement-I:</b> Acceleration due to gravity is different at different places on the surface of earth.<br><b>Statement-II:</b> Acceleration due to gravity increases as we go down below the earth's surface.<br>In the light of the above statements, choose the correct answer.", options: ["Both Statement I and Statement II are true", "Both Statement I and Statement II are false", "Statement I is true but Statement II is false", "Statement I is false but Statement II is true"], answer: "Statement I is true but Statement II is false" },
+                { section: "Physics", content: "A mercury drop of radius \\(10^{-3}\\) m is broken into 125 equal size droplets. Surface tension of mercury is \\(0.45 N m^{-1}\\). The gain in surface energy is:", options: ["\\(2.26 \\times 10^{-5} J\\)", "\\(28 \\times 10^{-5} J\\)", "\\(17.5 \\times 10^{-5} J\\)", "\\(5 \\times 10^{-5} J\\)"], answer: "\\(2.26 \\times 10^{-5} J\\)" },
+                { section: "Physics", content: "A sample of gas at temperature T is adiabatically expanded to double its volume. The work done by the gas in the process is (given \\(\\gamma = 3/2\\)):", options: ["\\(W = TR(\\sqrt{2} - 2)\\)", "\\(W = (T/R)(\\sqrt{2} - 2)\\)", "\\(W = (R/T)(2 - \\sqrt{2})\\)", "\\(W = RT(2 - \\sqrt{2})\\)"], answer: "\\(W = RT(2 - \\sqrt{2})\\)" },
+                { section: "Physics", content: "The average kinetic energy of a molecule of the gas is:", options: ["proportional to absolute temperature", "proportional to volume", "proportional to pressure", "dependent on the nature of the gas"], answer: "proportional to absolute temperature" },
+                { section: "Physics", content: "A steel wire with mass per unit length \\(7.0 \\times 10^{-3} kg m^{-1}\\) is under tension of 70 N. The speed of transverse waves in the wire will be:", options: ["\\(200\\pi m s^{-1}\\)", "\\(100 m s^{-1}\\)", "\\(10 m s^{-1}\\)", "\\(50 m s^{-1}\\)"], answer: "\\(100 m s^{-1}\\)" },
+                { section: "Physics", content: "Let \\(\\sigma\\) be the uniform surface charge density of two infinite thin plane sheets. Then the electric fields in three different regions \\(E_I, E_{II}\\) and \\(E_{III}\\) are:", options: ["\\(E_I = 2\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = 2\\sigma/\\epsilon_0 \\hat{n}\\)", "\\(E_I = 0, E_{II} = \\sigma/\\epsilon_0 \\hat{n}, E_{III} = 0\\)", "\\(E_I = \\sigma/(2\\epsilon_0) \\hat{n}, E_{II} = 0, E_{III} = \\sigma/(2\\epsilon_0) \\hat{n}\\)", "\\(E_I = -\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = \\sigma/\\epsilon_0 \\hat{n}\\)"], answer: "\\(E_I = -\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = \\sigma/\\epsilon_0 \\hat{n}\\)" },
+                { section: "Physics", content: "The equivalent resistance between A and B of the network shown in the figure is:", options: ["112R/3", "14R", "21R", "8R/3"], answer: "8R/3" },
+                { section: "Physics", content: "Find the magnetic field at the point P. The curved portion is a semicircle connected to two long straight wires.", options: ["\\(\\mu_0i / (2r) \\cdot (1 + 2/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1 + 1/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/\\pi)\\)"], answer: "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)" },
+                { section: "Physics", content: "Match List-I with List-II:<br><b>List I:</b> (A) AC generator, (B) Transformer, (C) Resonance phenomenon, (D) Sharpness of resonance<br><b>List II:</b> (I) Presence of both L and C, (II) Electromagnetic Induction, (III) Quality factor, (IV) Mutual Inductance", options: ["A-IV, B-II, C-I, D-III", "A-II, B-I, C-III, D-IV", "A-II, B-IV, C-I, D-III", "A-IV, B-III, C-I, D-II"], answer: "A-II, B-IV, C-I, D-III" },
+                { section: "Physics", content: "Match List-I with List-II:<br><b>List I:</b> (A) Microwaves, (B) Gamma rays, (C) Radio waves, (D) X-rays<br><b>List II:</b> (I) Radioactive decay of the nucleus, (II) Rapid acceleration and deceleration of electron in aerials, (III) Inner shell electrons, (IV) Klystron valve", options: ["A-I, B-II, C-III, D-IV", "A-IV, B-I, C-II, D-III", "A-I, B-III, C-IV, D-II", "A-IV, B-III, C-II, D-I"], answer: "A-IV, B-I, C-II, D-III" },
+                { section: "Physics", content: "‘n’ polarizing sheets are arranged such that each makes an angle 45° with the preceeding sheet. An unpolarized light of intensity I is incident into this arrangement. The output intensity is found to be I/64. The value of n will be:", options: ["3", "6", "5", "4"], answer: "6" },
+                { section: "Physics", content: "A proton moving with one tenth of velocity of light has a certain de Broglie wavelength of \\(\\lambda\\). An alpha particle having certain kinetic energy has the same de-Broglie wavelength \\(\\lambda\\). The ratio of kinetic energy of proton and that of alpha particle is:", options: ["2 : 1", "4 : 1", "1 : 2", "1 : 4"], answer: "4 : 1" },
+                { section: "Physics", content: "The mass of proton, neutron and helium nucleus are respectively 1.0073 u, 1.0087 u and 4.0015u. The binding energy of helium nucleus is:", options: ["14.2 MeV", "28.4 MeV", "56.8 MeV", "7.1 MeV"], answer: "28.4 MeV" },
+                { section: "Physics", content: "Match List I with List II:<br><b>List I:</b> (A) Intrinsic Semiconductor, (B) n-type semiconductor, (C) p-type semiconductor, (D) Metals<br><b>List II:</b> (I) Fermi-level near valence band, (II) Fermi-level at middle of valence and conduction band, (III) Fermi-level near conduction band, (IV) Fermi-level inside conduction band", options: ["(A)→I, (B)→II, (C)→III, (D)→IV", "(A)→II, (B)→I, (C)→III, (D)→IV", "(A)→II, (B)→III, (C)→I, (D)→IV", "(A)→III, (B)→I, (C)→II, (D)→IV"], answer: "(A)→II, (B)→III, (C)→I, (D)→IV" },
+                { section: "Physics", content: "Which of the following frequencies does not belong to FM broadcast.", options: ["106 MHz", "64 MHz", "99 MHz", "89 MHz"], answer: "64 MHz" },
+                { section: "Physics", content: "A small particle moves to position \\(5\\hat{i} - 2\\hat{j} + \\hat{k}\\) from its initial position \\(2\\hat{i} + 3\\hat{j} - 4\\hat{k}\\) under the action of force \\(5\\hat{i} + 2\\hat{j} + 7\\hat{k}\\) N. The value of work done will be ______ J.", options: [], answer: "40" },
+                { section: "Physics", content: "A solid cylinder is released from rest from the top of an inclined plane of inclination 30° and length 60 cm. If the cylinder rolls without slipping, its speed upon reaching the bottom of the inclined plane is ______ \\(m s^{-1}\\). (Given \\(g = 10 m s^{-2}\\))", options: [], answer: "2" },
+                { section: "Physics", content: "A certain pressure 'P' is applied to 1 litre of water and 2 litre of a liquid separately. Water gets compressed to 0.01% whereas the liquid gets compressed to 0.03%. The ratio of Bulk modulus of water to that of the liquid is 3/x. The value of x is ______.", options: [], answer: "1" },
+                { section: "Physics", content: "The amplitude of a particle executing SHM is 3 cm. The displacement at which its kinetic energy will be 25% more than the potential energy is: ______ cm.", options: [], answer: "2" },
+                { section: "Physics", content: "Two equal positive point charges are separated by a distance 2a. The distance of a point from the centre of the line joining two charges on the equatorial line (perpendicular bisector) at which force experienced by a test charge \\(q_0\\) becomes maximum is \\(a/\\sqrt{x}\\). The value of x is ______.", options: [], answer: "2" },
+                { section: "Physics", content: "In an experiment to find emf of a cell using potentiometer, the length of null point for a cell of emf 1.5 V is found to be 60 cm. If this cell is replaced by another cell of emf E, the length-of null point increases by 40 cm. The value of E is x/10 V. The value of x is ______.", options: [], answer: "25" },
+                { section: "Physics", content: "A charge particle of \\(2 \\mu C\\) accelerated by a potential difference of 100 V enters a region of uniform magnetic field of magnitude 4 mT at right angle to the direction of field. The charge particle completes semicircle of radius 3 cm inside magnetic field. The mass of the charge particle is ______ \\(\\times 10^{-18}\\) kg.", options: [], answer: "144" },
+                { section: "Physics", content: "A series LCR circuit is connected to an ac source of 220 V, 50 Hz. The circuit contain a resistance R = 100 \\(\\Omega\\) and an inductor of inductive reactance \\(X_L = 79.6 \\Omega\\). The capacitance of the capacitor needed to maximize the average rate at which energy is supplied will be ______ \\(\\mu F\\).", options: [], answer: "40" },
+                { section: "Physics", content: "A thin cylindrical rod of length 10 cm is placed horizontally on the principle axis of a concave mirror of focal length 20 cm. The rod is placed in a such a way that mid point of the rod is at 40 cm from the pole of mirror. The length of the image formed by the mirror will be x/3 cm. The value of x is ______.", options: [], answer: "32" },
+                { section: "Physics", content: "A light of energy 12.75 eV is incident on a hydrogen atom in its ground state. The atom absorbs the radiation and reaches to one of its excited states. The angular momentum of the atom in the excited state is \\(x/\\pi \\times 10^{-17}\\) eVs. The value of x is ______ (use \\(h = 4.14 \\times 10^{-15}\\) eVs, \\(c = 3 \\times 10^8 m s^{-1}\\))", options: [], answer: "828" },
+                // Chemistry
+                { section: "Chemistry", content: "<b>Assertion A:</b> Hydrogen is an environment friendly fuel.<br><b>Reason R:</b> Atomic number of hydrogen is 1 and it is a very light element.", options: ["A is true but R is false", "Both A and R are true but R is NOT the correct explanation of A", "A is false but R is true", "Both A and R are true and R is the correct explanation of A"], answer: "Both A and R are true but R is NOT the correct explanation of A" },
+                { section: "Chemistry", content: "Match List I with List II<br>(A) Slaked lime (I) NaOH<br>(B) Dead burnt plaster (II) \\(Ca(OH)_2\\)<br>(C) Caustic soda (III) \\(Na_2CO_3 \\cdot 10H_2O\\)<br>(D) Washing soda (IV) \\(CaSO_4\\)", options: ["(A)-I, (B)-IV, (C)-II, (D)-III", "(A)-III, (B)-IV, (C)-II, (D)-I", "(A)-II, (B)-IV, (C)-I, (D)-III", "(A)-III, (B)-II, (C)-IV, (D)-I"], answer: "(A)-II, (B)-IV, (C)-I, (D)-III" },
+                { section: "Chemistry", content: "Choose the correct statement(s):<br>A. Beryllium oxide is purely acidic in nature.<br>B. Beryllium carbonate is kept in the atmosphere of \\(CO_2\\).<br>C. Beryllium sulphate is readily soluble in water.<br>D. Beryllium shows anomalous behavior.", options: ["A, B and C only", "B, C and D only", "A and B only", "A only"], answer: "B, C and D only" },
+                { section: "Chemistry", content: "Regarding resonance in carbonate ion \\(CO_3^{2-}\\), which of the following is true?", options: ["It is possible to identify each structure individually by some physical or chemical method.", "All these structures are in dynamic equilibrium with each other.", "Each structure exists for equal amount of time.", "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures."], answer: "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures." },
+                { section: "Chemistry", content: "But-2-yne is reacted separately with one mole of Hydrogen. Reaction with \\(H_2/Pd/C\\) gives product A. Reaction with \\(Na/liq NH_3\\) gives product B. Identify the incorrect statements from the options given below:<br>A. A is more soluble than B.<br>B. The boiling point & melting point of A are higher and lower than B respectively.<br>C. A is more polar than B because dipole moment of A is zero.<br>D. \\(Br_2\\) adds easily to B than A.", options: ["B and C only", "B, C and D only", "A, C and D only", "A and B only"], answer: "B, C and D only" },
+                { section: "Chemistry", content: "How can photochemical smog be controlled?", options: ["By using tall chimneys", "By complete combustion of fuel", "By using catalytic converters in the automobiles/industry", "By using catalyst"], answer: "By using catalytic converters in the automobiles/industry" },
+                { section: "Chemistry", content: "Which of the following represents the lattice structure of \\(A_{0.95}O\\) containing \\(A^{2+}, A^{3+}\\) and \\(O^{2-}\\) ions?", options: ["A: 0.90 \\(A^{2+}\\), 0.05 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "B: 0.85 \\(A^{2+}\\), 0.10 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "C: 0.95 \\(A^{2+}\\), 0.00 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "A and B only"], answer: "A: 0.90 \\(A^{2+}\\), 0.05 \\(A^{3+}\\), 1 \\(O^{2-}\\)" },
+                { section: "Chemistry", content: "<b>Assertion A:</b> Amongst He, Ne, Ar and Kr; 1 g of activated charcoal adsorbs more of Kr.<br><b>Reason R:</b> The critical volume \\(V_c\\) and critical pressure \\(P_c\\) is highest for Krypton but the compressibility factor at critical point \\(Z_c\\) is lowest for Krypton.", options: ["A is true but R is false", "A is false but R is true", "Both A and R are true but R is NOT the correct explanation of A", "Both A and R are true and R is the correct explanation A"], answer: "A is true but R is false" },
+                { section: "Chemistry", content: "<b>Assertion A:</b> In an Ellingham diagram, the oxidation of carbon to carbon monoxide shows a negative slope with respect to temperature.<br><b>Reason R:</b> CO tends to get decomposed at higher temperature.", options: ["Both A and R are correct and R is the correct explanation of A", "A is not correct but R is correct", "Both A and R are correct but R is NOT the correct explanation of A", "A is correct but R is not correct"], answer: "A is correct but R is not correct" },
+                { section: "Chemistry", content: "<b>Statement I:</b> Chlorine can easily combine with oxygen to form oxides: and the product has a tendency to explode.<br><b>Statement II:</b> Chemical reactivity of an element can be determined by its reaction with oxygen and halogens.", options: ["Both the statements I and II are true", "Statement I is true but Statement II is false", "Statement I is false but Statement II is true", "Both the Statements I and II are false"], answer: "Both the statements I and II are true" },
+                { section: "Chemistry", content: "A solution of \\(FeCl_3\\) when treated with \\(K_4[Fe(CN)_6]\\) gives a prussian blue precipitate due to the formation of:", options: ["\\(KFe_2[CN]_6\\)", "\\(Fe[Fe(CN)_6]\\)", "\\(Fe_3[Fe(CN)_6]_2\\)", "\\(Fe_4[Fe(CN)_6]_3\\)"], answer: "\\(Fe_4[Fe(CN)_6]_3\\)" },
+                { section: "Chemistry", content: "Highest oxidation state of Mn is exhibited in \\(Mn_2O_7\\). The correct statements about \\(Mn_2O_7\\) are:<br>(A) Mn is tetrahedrally surrounded by oxygen atoms<br>(B) Mn is octahedrally surrounded by oxygen atoms<br>(C) Contains Mn-O-Mn bridge<br>(D) Contains Mn-Mn bond.", options: ["A and C only", "A and D only", "B and D only", "B and C only"], answer: "A and C only" },
+                { section: "Chemistry", content: "Which of the following complex will show largest splitting of d-orbitals?", options: ["\\([Fe(C_2O_4)_3]^{3-}\\)", "\\([FeF_6]^{3-}\\)", "\\([Fe(CN)_6]^{3-}\\)", "\\([Fe(NH_3)_6]^{3+}\\)"], answer: "\\([Fe(CN)_6]^{3-}\\)" },
+                { section: "Chemistry", content: "Which of the following are the example of double salt?<br>(A) \\(FeSO_4 \\cdot (NH_4)_2SO_4 \\cdot 6H_2O\\)<br>(B) \\(CuSO_4 \\cdot 4NH_3 \\cdot H_2O\\)<br>(C) \\(K_2SO_4 \\cdot Al_2(SO_4)_3 \\cdot 24H_2O\\)<br>(D) \\(Fe(CN)_2 \\cdot 4KCN\\)", options: ["A and C only", "A and B only", "A, B and D only", "B and D only"], answer: "A and C only" },
+                { section: "Chemistry", content: "Identify the incorrect reaction option from the following:", options: ["Phenol + Zn dust → Benzene", "Aniline + \\(NaNO_2/HCl\\) (0-5°C) → Benzene diazonium chloride", "Benzaldehyde + Zn-Hg/HCl → Toluene", "Benzene + \\(CH_3Cl\\)/Anhydrous \\(AlCl_3\\) → Toluene"], answer: "Aniline + \\(NaNO_2/HCl\\) (0-5°C) → Benzene diazonium chloride" },
+                { section: "Chemistry", content: "Decreasing order of dehydration of the following alcohols is: a) tert-butyl alcohol b) n-butyl alcohol c) sec-butyl alcohol d) iso-butyl alcohol", options: ["a > d > b > c", "b > d > c > a", "b > a > d > c", "d > b > c > a"], answer: "b > d > c > a" },
+                { section: "Chemistry", content: "In the reaction: Anisole + HI → Product 'A', 'A' is:", options: ["Benzene + \\(CH_3I\\)", "Phenol + \\(CH_3I\\)", "Iodobenzene + \\(CH_3OH\\)", "Benzene + \\(CH_3OH\\)"], answer: "Phenol + \\(CH_3I\\)" },
+                { section: "Chemistry", content: "Match List I with List II:<br><b>List I:</b> (A) Tranquilizers, (B) Aspirin, (C) Antibiotic, (D) Antiseptic<br><b>List II:</b> (I) Anti blood clotting, (II) Salvarsan, (III) Antidepressant drugs, (IV) Soframicine", options: ["(A)–IV, (B)–II, (C)–I, (D)–III", "(A)–II, (B)–I, (C)–III, (D)–IV", "(A)–III, (B)–I, (C)–II, (D)–IV", "(A)–II, (B)–IV, (C)–I, (D)–III"], answer: "(A)–III, (B)–I, (C)–II, (D)–IV" },
+                { section: "Chemistry", content: "The correct representation in six membered pyranose form for the sugar D-glucose is:", options: ["alpha-D-glucopyranose", "beta-D-glucopyranose", "alpha-L-glucopyranose", "beta-L-glucopyranose"], answer: "beta-D-glucopyranose" },
+                { section: "Chemistry", content: "Match List I and List II:<br><b>List I (Test):</b> (A) Molisch's Test, (B) Biuret Test, (C) Carbylamine Test, (D) Schiff's Test<br><b>List II (Functional group):</b> (I) Peptide, (II) Carbohydrate, (III) Primary amine, (IV) Aldehyde", options: ["(A)-I, (B)-II, (C)-III, (D)-IV", "(A)-III, (B)-IV, (C)-I, (D)-II", "(A)-II, (B)-I, (C)-III, (D)-IV", "(A)-III, (B)-IV, (C)-II, (D)-I"], answer: "(A)-II, (B)-I, (C)-III, (D)-IV" },
+                { section: "Chemistry", content: "The density of 3M solution of NaCl is \\(1.0 g mL^{-1}\\). Molality of the solution is ______ \\(\\times 10^{-2}\\) m (Nearest integer). Given: Molar mass of Na and Cl is 23 and 35.5 \\(g mol^{-1}\\) respectively.", options: [], answer: "364" },
+                { section: "Chemistry", content: "Electrons in a cathode ray tube have been emitted with a velocity of \\(1000 ms^{-1}\\). The number of following statements which is/are true about the emitted radiation is ______.<br>(A) The deBroglie wavelength of the electron emitted is 666.67 nm<br>(B) The characteristic of electrons emitted depend upon the material of the electrodes of the cathode ray tube.<br>(C) The cathode rays start from cathode and move towards anode.<br>(D) The nature of the emitted electrons depends on the nature of the gas present in cathode ray tube.", options: [], answer: "2" },
+                { section: "Chemistry", content: "At 25°C, enthalpies are given: \\(H_2(g)+O_2(g) \\rightarrow 2OH(g) \\Delta H=78kJ\\); \\(H_2(g)+1/2O_2(g) \\rightarrow H_2O(g) \\Delta H=-242kJ\\); \\(H_2(g) \\rightarrow 2H(g) \\Delta H=436kJ\\); \\(1/2O_2(g) \\rightarrow O(g) \\Delta H=249kJ\\). What is \\(\\Delta H\\) for \\(H_2O(g) \\rightarrow H(g)+OH(g)\\)? (Nearest integer)", options: [], answer: "499" },
+                { section: "Chemistry", content: "(i) \\(X(g) \\rightleftharpoons Y(g) + Z(g) K_{p1}=3\\)<br>(ii) \\(A(g) \\rightleftharpoons 2B(g) K_{p2}=1\\)<br>If the degree of dissociation and initial concentration of both reactants X(g) and A(g) are equal, then the ratio of the total pressure at equilibrium \\(p_1/p_2\\) is equal to x:1. The value of x is ______.", options: [], answer: "12" },
+                { section: "Chemistry", content: "The total number of chiral compound/s from a given list of structures is ______. (List includes: 2-chlorobutane, 1-chlorobutane, 2,3-dichloropentane, etc.)", options: [], answer: "2" },
+                { section: "Chemistry", content: "25 mL of an aqueous solution of KCl was found to require 20 mL of 1M AgNO₃ solution when titrated using \\(K_2CrO_4\\) as an indicator. What is the depression in freezing point of KCl solution of the given concentration? (Nearest integer). (Given : \\(K_f = 2.0 K kg mol^{-1}\\))", options: [], answer: "3" },
+                { section: "Chemistry", content: "At what pH, given half cell \\(MnO_4^-(0.1M) | Mn^{2+}(0.001 M)\\) will have electrode potential of 1.282 V? (Nearest Integer) Given \\(E^\\circ(MnO_4^-/Mn^{2+}) = 1.54 V\\), \\((2.303RT/F) = 0.059 V\\)", options: [], answer: "3" },
+                { section: "Chemistry", content: "A and B are two substances undergoing radioactive decay. The half life of A is 15 min and B is 5 min. If the initial concentration of B is 4 times that of A and they both start decaying at the same time, how much time will it take for their concentrations to be same? ________min.", options: [], answer: "15" },
+                { section: "Chemistry", content: "Sum of oxidation states of bromine in bromic acid and perbromic acid is ______.", options: [], answer: "12" },
+                { section: "Chemistry", content: "Number of isomeric compounds with molecular formula \\(C_9H_{10}O\\) which (i) do not dissolve in NaOH (ii) do not dissolve in HCl (iii) do not give orange precipitate with 2,4-DNP (iv) on hydrogenation give identical compound with molecular formula \\(C_9H_{12}O\\) is ______.", options: [], answer: "2" },
+                 // Maths
+                { section: "Maths", content: "Let \\(S = \\{x: x \\in \\mathbb{R} \\text{ and } (\\sqrt{3} + \\sqrt{2})^{x^2-4} + (\\sqrt{3} - \\sqrt{2})^{x^2-4} = 10\\}\\). Then \\(n(S)\\) is equal to:", options: ["2", "4", "6", "0"], answer: "4" },
+                { section: "Maths", content: "If the center and radius of the circle \\(|(z-2)/(z-3)| = 2\\) are respectively \\((\\alpha, \\beta)\\) and \\(\\gamma\\), then \\(3\\alpha + \\beta + \\gamma^2\\) is equal to:", options: ["11", "9", "10", "12"], answer: "12" },
+                { section: "Maths", content: "The sum to 10 terms of the series \\(\\frac{1}{1+1^2+1^4} + \\frac{2}{1+2^2+2^4} + \\frac{3}{1+3^2+3^4} + \\dots\\) is:", options: ["59/111", "55/111", "56/111", "58/111"], answer: "55/111" },
+                { section: "Maths", content: "The value of \\(\\frac{1}{1!50!} + \\frac{1}{3!48!} + \\frac{1}{5!46!} + \\dots + \\frac{1}{51!1!}\\) is:", options: ["\\(2^{50}/50!\\)", "\\(2^{50}/51!\\)", "\\(2^{51}/51!\\)", "\\(2^{51}/50!\\)"], answer: "\\(2^{50}/51!\\)" },
+                { section: "Maths", content: "The equation of the angle bisectors of the lines represented by the equation \\(2x^2 + xy - 3y^2 = 0\\) is:", options: ["\\(3x^2 + 5xy + 2y^2 = 0\\)", "\\(x^2 - y^2 + 10xy = 0\\)", "\\(3x^2 + xy - 2y^2 = 0\\)", "\\(x^2 - y^2 - 10xy = 0\\)"], answer: "\\(x^2 - y^2 - 10xy = 0\\)" },
+                { section: "Maths", content: "If the orthocentre of the triangle, whose vertices are (1,2), (2,3) and (3,1) is \\((\\alpha, \\beta)\\), then the quadratic equation whose roots are \\(\\alpha+4\\beta\\) and \\(4\\alpha+\\beta\\), is:", options: ["\\(x^2 - 19x + 90 = 0\\)", "\\(x^2 - 18x + 80 = 0\\)", "\\(x^2 - 22x + 120 = 0\\)", "\\(x^2 - 20x + 99 = 0\\)"], answer: "\\(x^2 - 20x + 99 = 0\\)" },
+                { section: "Maths", content: "The negation of the expression \\(q \\lor ((\\sim q) \\land p)\\) is equivalent to:", options: ["\\((\\sim p) \\land (\\sim q)\\)", "\\(p \\land (\\sim q)\\)", "\\((\\sim p) \\lor (\\sim q)\\)", "\\((\\sim p) \\lor q\\)"], answer: "\\((\\sim p) \\land (\\sim q)\\)" },
+                { section: "Maths", content: "The mean and variance of 5 observations are 5 and 8 respectively. If 3 observations are 1, 3, 5, then the sum of cubes of the remaining two observations is:", options: ["1072", "1792", "1216", "1456"], answer: "1072" },
+                { section: "Maths", content: "For a triangle ABC, the value of \\(\\cos(2A) + \\cos(2B) + \\cos(2C)\\) is least. If its inradius is 3 and incentre is M, then which of the following is NOT correct?", options: ["Perimeter of \\(\\Delta ABC\\) is \\(18\\sqrt{3}\\)", "\\(\\sin(2A)+\\sin(2B)+\\sin(2C) = \\sin(A)+\\sin(B)+\\sin(C)\\)", "\\(\\vec{MA} \\cdot \\vec{MB} = -18\\)", "area of \\(\\Delta ABC\\) is \\(27\\sqrt{3}/2\\)"], answer: "area of \\(\\Delta ABC\\) is \\(27\\sqrt{3}/2\\)" },
+                { section: "Maths", content: "Let R be a relation on \\(\\mathbb{R}\\), given by \\(R = \\{(a, b): 3a - 3b + \\sqrt{7} \\text{ is an irrational number}\\}\\). Then R is:", options: ["Reflexive but neither symmetric nor transitive", "Reflexive and transitive but not symmetric", "Reflexive and symmetric but not transitive", "An equivalence relation"], answer: "Reflexive but neither symmetric nor transitive" },
+                { section: "Maths", content: "Let S denote the set of all real values of \\(\\lambda\\) such that the system of equations \\(\\lambda x+y+z=1, x+\\lambda y+z=1, x+y+\\lambda z=1\\) is inconsistent, then \\(\\sum_{\\lambda \\in S} (\\lambda^2 + \\lambda)\\) is equal to:", options: ["2", "12", "4", "6"], answer: "6" },
+                { section: "Maths", content: "Let S be the set of all solutions of the equation \\(\\cos^{-1}(2x) - 2\\cos^{-1}(\\sqrt{1-x^2}) = \\pi, x \\in [-1/2, 1/2]\\). Then \\(\\sum_{x \\in S} 2\\sin^{-1}(x^2-1)\\) is equal to:", options: ["0", "\\(-2\\pi/3\\)", "\\(\\pi - \\sin^{-1}(\\sqrt{3}/4)\\)", "\\(\\pi - 2\\sin^{-1}(\\sqrt{3}/4)\\)"], answer: "0" },
+                { section: "Maths", content: "Let \\(f(x) = 2x + \\tan^{-1}(x)\\) and \\(g(x) = \\log_e(\\sqrt{1+x^2} + x), x \\in [0, 3]\\). Then:", options: ["There exists \\(x \\in (0,3)\\) such that \\(f'(x) < g'(x)\\)", "\\(\\max f(x) > \\max g(x)\\)", "There exist \\(0 < x_1 < x_2 < 3\\) such that \\(f(x) < g(x), \\forall x \\in (x_1, x_2)\\)", "\\(\\min f'(x) = 1 + \\max g'(x)\\)"], answer: "\\(\\max f(x) > \\max g(x)\\)" },
+                { section: "Maths", content: "Let f(x) be the determinant of a 3x3 matrix with rows \\((1+\\sin^2x, \\cos^2x, \\sin2x)\\), \\((\\sin^2x, 1+\\cos^2x, \\sin2x)\\), \\((\\sin^2x, \\cos^2x, 1+\\sin2x)\\), for \\(x \\in [\\pi/6, \\pi/3]\\). If \\(\\alpha\\) and \\(\\beta\\) are the max and min values of f, then:", options: ["\\(\\beta^2 - 2\\sqrt{\\alpha} = 19/4\\)", "\\(\\beta^2 + 2\\sqrt{\\alpha} = 19/4\\)", "\\(\\alpha^2 - \\beta^2 = 4\\sqrt{3}\\)", "\\(\\alpha^2 + \\beta^2 = 9/2\\)"], answer: "\\(\\beta^2 - 2\\sqrt{\\alpha} = 19/4\\)" },
+                { section: "Maths", content: "\\(\\lim_{n\\to\\infty} [\\frac{1}{1+n} + \\frac{1}{2+n} + \\frac{1}{3+n} + \\dots + \\frac{1}{2n}]\\) is equal to:", options: ["0", "\\(\\log_e2\\)", "\\(\\log_e(3/2)\\)", "\\(\\log_e(2/3)\\)"], answer: "\\(\\log_e2\\)" },
+                { section: "Maths", content: "The area enclosed by the closed curve C given by \\(dy/dx + (x+a)/(y-2) = 0, y(1)=0\\) is \\(4\\pi\\). Let P,Q be intersection points of C and y-axis. If normals at P,Q on C intersect x-axis at R,S, then length of RS is:", options: ["\\(2\\sqrt{3}\\)", "\\(2\\sqrt{3}/3\\)", "2", "\\(4\\sqrt{3}/3\\)"], answer: "\\(4\\sqrt{3}/3\\)" },
+                { section: "Maths", content: "If \\(y=y(x)\\) is the solution curve of \\(dy/dx + y\\tan(x) = x\\sec(x), 0 \\le x \\le \\pi/3, y(0)=1\\), then \\(y(\\pi/6)\\) is equal to:", options: ["\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)", "\\(\\pi/12 + (\\sqrt{3}/2)\\log_e(2\\sqrt{3}/e)\\)", "\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2\\sqrt{3}/e)\\)", "\\(\\pi/12 + (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)"], answer: "\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)" },
+                { section: "Maths", content: "Let the image of the point P(2, -1, 3) in the plane \\(x + 2y - z = 0\\) be Q. Then the distance of the plane \\(3x + 2y + z + 29 = 0\\) from the point Q is:", options: ["\\(22\\sqrt{2}/7\\)", "\\(24\\sqrt{2}/7\\)", "\\(2\\sqrt{14}\\)", "\\(3\\sqrt{14}\\)"], answer: "\\(3\\sqrt{14}\\)" },
+                { section: "Maths", content: "The shortest distance between the lines \\((x-5)/1 = (y-2)/2 = (z-4)/(-3)\\) and \\((x+3)/1 = (y+5)/4 = (z-1)/(-5)\\) is:", options: ["\\(7\\sqrt{3}\\)", "\\(5\\sqrt{3}\\)", "\\(6\\sqrt{3}\\)", "\\(4\\sqrt{3}\\)"], answer: "\\(6\\sqrt{3}\\)" },
+                { section: "Maths", content: "In a binomial distribution B(n,p), the sum and product of the mean & variance are 5 and 6 respectively, then \\(6(n+p-q)\\) is equal to:", options: ["51", "52", "53", "50"], answer: "52" },
+                { section: "Maths", content: "The number of words, with or without meaning, that can be formed using all the letters of the word ASSASSINATION so that the vowels occur together, is _____.", options: [], answer: "50400" },
+                { section: "Maths", content: "Let \\(a_1=8, a_2, a_3, \\dots\\) be an A.P. If the sum of its first four terms is 50 and the sum of its last four terms is 170, then the product of its middle two terms is _____.", options: [], answer: "754" },
+                { section: "Maths", content: "The number of 3-digit numbers, that are divisible by either 2 or 3 but not divisible by 7 is _____.", options: [], answer: "514" },
+                { section: "Maths", content: "The remainder when \\(19^{200} + 23^{200}\\) is divided by 49, is _____.", options: [], answer: "29" },
+                { section: "Maths", content: "If \\(f(x) = x^2 + g'(1)x + g''(2)\\) and \\(g(x) = f(1)x^2 + xf'(x) + f''(x)\\), then the value of \\(f(4) - g(4)\\) is equal to _____.", options: [], answer: "14" },
+                { section: "Maths", content: "If \\(\\int_0^1 x^{21}(1+x^7)(2x^{14}+3x^7+6)^{1/7} dx = (1/l)(11)^{m/n}\\) where \\(l,m,n \\in \\mathbb{N}\\), m and n are co-prime then \\(l+m+n\\) is equal to _____.", options: [], answer: "63" },
+                { section: "Maths", content: "Let A be the area bounded by the curve \\(y = x|x-3|\\), the x-axis and the ordinates x = -1 and x = 2. Then 12A is equal to _____.", options: [], answer: "62" },
+                { section: "Maths", content: "Let \\(f: \\mathbb{R} \\rightarrow \\mathbb{R}\\) be a differentiable function such that \\(f'(x) + f(x) = \\int_0^2 f(t)dt\\). If \\(f(0) = e^{-2}\\), then \\(2f(0) - f(2)\\) is equal to _____.", options: [], answer: "1" },
+                { section: "Maths", content: "Let \\(v = \\alpha\\hat{i}+2\\hat{j}-3\\hat{k}, w = 2\\alpha\\hat{i}+\\hat{j}-\\hat{k}\\). If the minimum value of the scalar triple product [u v w] is \\(-\\alpha\\sqrt{3401}\\), \\(|u|=\\sqrt{\\alpha} (\\alpha>0)\\), and \\(|u\\cdot\\hat{i}|^2 = m/n\\) where m,n are coprime, then m+n is equal to _____.", options: [], answer: "3501" },
+                { section: "Maths", content: "A(2,6,2), B(-4,0,\\(\\lambda\\)), C(2,3,-1) and D(4,5,0), \\(\\lambda \\le 5\\) are vertices of a quadrilateral ABCD. If its area is 18 square units, then \\(5-6\\lambda\\) is equal to _____.", options: [], answer: "11" }
+            ]
+        };
+
+        allPapersData.push(paper1);
+        const subjects = ["Physics", "Chemistry", "Maths"];
+        for (let i = 1; i < 70; i++) {
+            const subject = subjects[i % 3];
+            allPapersData.push({
+                questions: [ { section: subject, content: `This is an example ${subject} question for Paper ${i + 1}.`, options: [`Option A for Paper ${i+1}`, `Option B`, `Option C`, `Option D`], answer: `Option A for Paper ${i+1}` } ]
+            });
+        }
+    }
+    
+    // --- CORE EXAM LOGIC ---
+    function showScreen(screenId) {
+        document.body.classList.toggle('setup-active', screenId === 'setup-screen');
+        allScreens.forEach(id => {
+            const screen = document.getElementById(id);
+            if (screen) screen.classList.add('hidden');
+        });
+        const activeScreen = document.getElementById(screenId);
+        if (activeScreen) activeScreen.classList.remove('hidden');
+    }
+
+    function startExam(paperIndex) {
+        currentPaperIndex = paperIndex;
+        showScreen('loading-screen');
+        setTimeout(() => {
+            examData = allPapersData[paperIndex];
+            const sectionNames = [...new Set(examData.questions.map(q => q.section).filter(Boolean))];
+            examData.sections = sectionNames.map(name => ({
+                name,
+                questions: examData.questions.filter(q => q.section === name).length
+            }));
+            document.getElementById('exam-title').textContent = `JEE Main Mock Exam - Paper ${paperIndex + 1}`;
+            initializeExam();
+        }, 1000);
+    }
+    
+    function initializeExam() {
+        showScreen('exam-screen');
+        state = [];
+        isReviewMode = false;
+        examData.questions.forEach(() => {
+            state.push({ status: 'not-visited', selectedOption: null });
+        });
+        navigateToQuestion(0, 0);
+        startTimer(180 * 60); // 3 hour timer
+    }
+
+    function renderPaperSelection() {
+        const grid = document.getElementById('paper-selection-grid');
+        grid.innerHTML = '';
+        const paperScores = JSON.parse(localStorage.getItem('paperScores')) || {};
+        const completedPapers = Object.keys(paperScores).map(Number);
+
+        for(let i=0; i<70; i++) {
+            const card = document.createElement('div');
+            const isCompleted = completedPapers.includes(i);
+            const isUnlocked = i === 0 || completedPapers.includes(i-1);
+
+            card.innerHTML = `<h3 class="font-bold text-lg mb-2">Paper ${i+1}</h3>`;
+            if (isCompleted) {
+                card.className = 'paper-card completed';
+                card.innerHTML += `<p class="text-sm">Score: ${paperScores[i]}</p><button class="mt-2 text-xs bg-white/30 px-2 py-1 rounded">Retake</button>`;
+                card.addEventListener('click', () => startExam(i));
+            } else if (isUnlocked) {
+                card.className = 'paper-card';
+                card.innerHTML += '<i class="fas fa-play-circle text-2xl"></i>';
+                card.addEventListener('click', () => startExam(i));
+            } else {
+                card.className = 'paper-card locked';
+                card.innerHTML += '<i class="fas fa-lock text-2xl"></i>';
+            }
+            grid.appendChild(card);
+        }
+    }
+    
+    function navigateToQuestion(sectionIndex, localQuestionIndex) {
+        const currentSectionTitleEl = document.getElementById('current-section-title');
+        let globalStartIndex = 0;
+        for(let i = 0; i < sectionIndex; i++) globalStartIndex += examData.sections[i].questions;
+        currentQuestionIndex = globalStartIndex + localQuestionIndex;
+        currentSectionIndex = sectionIndex;
+
+        currentSectionTitleEl.textContent = examData.sections[sectionIndex].name;
+        if (state[currentQuestionIndex] && state[currentQuestionIndex].status === 'not-visited') {
+            state[currentQuestionIndex].status = 'not-answered';
+        }
+        
+        renderQuestion();
+        renderQuestionPalette();
+        renderSectionTabs();
+    }
+    
+    function submitExam() {
+        clearInterval(timerInterval);
+        
+        const { score } = calculateScore();
+        let paperScores = JSON.parse(localStorage.getItem('paperScores')) || {};
+        paperScores[currentPaperIndex] = score;
+        localStorage.setItem('paperScores', JSON.stringify(paperScores));
+
+        showScreen('results-screen'); 
+        renderResults(); 
+    }
+    
+    function calculateScore() {
+        let score = 0; let correct = 0; let incorrect = 0;
+        examData.questions.forEach((q, index) => {
+            const userState = state[index];
+            let selectedAnswerText = null;
+
+            if (userState.selectedOption !== null) {
+                if (q.options.length > 0) { // MCQ
+                    selectedAnswerText = q.options[userState.selectedOption];
+                } else { // Numerical
+                    selectedAnswerText = userState.selectedOption;
+                }
+            }
+            
+            if (selectedAnswerText) { 
+                if (selectedAnswerText === q.answer) { score += 4; correct++; } 
+                else { score -= 1; incorrect++; }
+            }
+        });
+        return { score, correct, incorrect };
+    }
+    
+    function renderResults() { 
+        const { score, correct, incorrect } = calculateScore();
+        const reviewContainer = document.getElementById('review-container'); 
+        reviewContainer.innerHTML = ''; 
+        examData.questions.forEach((q, index) => { 
+            const userState = state[index]; 
+            let selectedAnswerText = null;
+            if (userState.selectedOption !== null) {
+                selectedAnswerText = (q.options.length > 0) ? q.options[userState.selectedOption] : userState.selectedOption;
+            }
+
+            let resultClass = 'bg-gray-100'; 
+            if (selectedAnswerText) { 
+                if (selectedAnswerText === q.answer) { resultClass = 'bg-green-100'; } 
+                else { resultClass = 'bg-red-100'; } 
+            } 
+            const reviewItem = document.createElement('div'); 
+            reviewItem.className = `p-3 rounded-md ${resultClass}`; 
+            reviewItem.innerHTML = `<p class="font-semibold">Q${index+1}: ${q.content}</p><p class="text-sm">Your answer: <span class="font-bold">${selectedAnswerText || 'Not Answered'}</span></p><p class="text-sm">Correct answer: <span class="font-bold">${q.answer}</span></p>`; 
+            reviewContainer.appendChild(reviewItem); 
+        }); 
+        document.getElementById('final-score').textContent = score; 
+        document.getElementById('correct-answers').textContent = correct; 
+        document.getElementById('incorrect-answers').textContent = incorrect; 
+        renderMathInElement(reviewContainer);
+    }
+    
+    function renderSectionTabs() { const sectionTabsContainer = document.getElementById('section-tabs-container'); sectionTabsContainer.innerHTML = ''; examData.sections.forEach((section, index) => { const tab = document.createElement('button'); tab.innerHTML = `${section.name} <i class="fas fa-chevron-down text-xs ml-1"></i>`; tab.className = 'py-1 px-3 text-sm rounded-md transition'; tab.className += (index === currentSectionIndex) ? ' bg-blue-600 text-white' : ' bg-gray-200 text-gray-700'; tab.addEventListener('click', () => !isReviewMode && changeSection(index)); sectionTabsContainer.appendChild(tab); }); }
+    function renderQuestionPalette() { const questionPalette = document.getElementById('question-palette'); const sectionInfo = findSectionForQuestion(currentQuestionIndex); const section = examData.sections[sectionInfo.sectionIndex]; let globalStartIndex = 0; for(let i = 0; i < sectionInfo.sectionIndex; i++) { globalStartIndex += examData.sections[i].questions; } questionPalette.innerHTML = ''; for (let i = 0; i < section.questions; i++) { const questionGlobalIndex = globalStartIndex + i; const button = document.createElement('button'); button.textContent = i + 1; button.className = 'question-palette-btn'; const status = state[questionGlobalIndex].status; if (status === 'answered') button.classList.add('palette-answered'); else if (status === 'not-answered') button.classList.add('palette-not-answered'); else if (status === 'marked') button.classList.add('palette-marked'); else if (status === 'answered-marked') button.classList.add('palette-answered-marked'); if (questionGlobalIndex === currentQuestionIndex) { button.classList.remove('palette-answered', 'palette-not-answered', 'palette-marked', 'palette-answered-marked'); button.classList.add('palette-current'); } button.title = status.replace('-', ' '); button.addEventListener('click', () => !isReviewMode && navigateToQuestion(sectionInfo.sectionIndex, i)); questionPalette.appendChild(button); } updateStatusCounts(); }
+    function updateStatusCounts() { let counts = { answered: 0, 'not-answered': 0, 'not-visited': 0, marked: 0 }; state.forEach(q => { if (q.status === 'answered' || q.status === 'answered-marked') counts.answered++; if (q.status === 'not-answered') counts['not-answered']++; if (q.status === 'not-visited') counts['not-visited']++; if (q.status === 'marked' || q.status === 'answered-marked') counts.marked++; }); document.getElementById('answered-count').textContent = counts.answered; document.getElementById('not-answered-count').textContent = counts['not-answered']; document.getElementById('not-visited-count').textContent = counts['not-visited']; document.getElementById('marked-count').textContent = counts.marked; }
+    
+    function renderQuestion() { 
+        const questionData = examData.questions[currentQuestionIndex]; 
+        const questionState = state[currentQuestionIndex]; 
+        document.getElementById('question-number').textContent = currentQuestionIndex + 1; 
+        document.getElementById('question-content').innerHTML = questionData.content; 
+        const optionsContainer = document.getElementById('options-container'); 
+        optionsContainer.innerHTML = ''; 
+
+        if (questionData.options.length > 0) { // MCQ
+            document.getElementById('question-type').textContent = "MCQ";
+            questionData.options.forEach((option, index) => { 
+                const optionEl = document.createElement('button'); 
+                const isSelected = questionState.selectedOption === index; 
+                optionEl.innerHTML = `<div class="w-6 h-6 border-2 rounded-full flex-shrink-0 mr-3 flex items-center justify-center">${isSelected ? '<div class="w-3 h-3 bg-blue-500 rounded-full"></div>' : ''}</div> <span class="font-semibold">${String.fromCharCode(65 + index)}.</span>&nbsp; ${option}`; 
+                optionEl.className = `w-full flex items-center text-left p-2 border rounded-md hover:bg-gray-100 ${isSelected ? 'bg-blue-50 border-blue-500' : ''}`; 
+                optionEl.addEventListener('click', () => selectOption(index)); 
+                optionsContainer.appendChild(optionEl); 
+            }); 
+        } else { // Numerical Answer
+             document.getElementById('question-type').textContent = "Numerical";
+             const numericalInputHTML = `<div class="flex items-center space-x-2"><label for="numerical-answer" class="font-semibold">Your Answer:</label><input type="text" id="numerical-answer" class="border rounded-md px-2 py-1 w-48" value="${questionState.selectedOption || ''}"></div>`;
+             optionsContainer.innerHTML = numericalInputHTML;
+             const numericalInput = document.getElementById('numerical-answer');
+             numericalInput.addEventListener('input', (e) => {
+                 state[currentQuestionIndex].selectedOption = e.target.value.trim();
+             });
+        }
+        renderMathInElement(optionsContainer);
+        renderMathInElement(document.getElementById('question-content'));
+    }
+    
+    function changeSection(sectionIndex) { navigateToQuestion(sectionIndex, 0); }
+    function selectOption(optionIndex) {  state[currentQuestionIndex].selectedOption = (state[currentQuestionIndex].selectedOption === optionIndex) ? null : optionIndex; renderQuestion(); }
+    function handleSaveNext() { const s = state[currentQuestionIndex]; if (s.selectedOption !== null && s.selectedOption !== '') s.status = (s.status === 'answered-marked' || s.status === 'marked') ? 'answered-marked' : 'answered'; goToNextQuestion(); }
+    function handleMarkReview() { const s = state[currentQuestionIndex]; s.status = (s.selectedOption !== null && s.selectedOption !== '') ? 'answered-marked' : 'marked'; goToNextQuestion(); }
+    function handleClearResponse() { const s = state[currentQuestionIndex]; s.selectedOption = null; if(s.status !== 'not-answered' && s.status !== 'not-visited') s.status = 'not-answered'; renderQuestion(); renderQuestionPalette(); }
+    function goToNextQuestion() { if (currentQuestionIndex < examData.questions.length - 1) { currentQuestionIndex++; const info = findSectionForQuestion(currentQuestionIndex); navigateToQuestion(info.sectionIndex, info.localIndex); } else { alert("This is the last question."); } }
+    function goToPreviousQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--; const info = findSectionForQuestion(currentQuestionIndex); navigateToQuestion(info.sectionIndex, info.localIndex); } }
+    function findSectionForQuestion(globalIndex) { let qCount = 0; for(let i=0; i < examData.sections.length; i++) { const sec = examData.sections[i]; if (globalIndex < qCount + sec.questions) return { sectionIndex: i, localIndex: globalIndex - qCount }; qCount += sec.questions; } return { sectionIndex: 0, localIndex: 0 }; }
+    function startTimer(duration) { const timerEl = document.getElementById('timer'); clearInterval(timerInterval); let timer = duration; timerInterval = setInterval(() => { if (--timer < 0) { clearInterval(timerInterval); submitExam(); } else { const hours = String(Math.floor(timer/3600)).padStart(2, '0'); const mins = String(Math.floor((timer % 3600)/60)).padStart(2,'0'); const secs = String(timer % 60).padStart(2, '0'); timerEl.textContent = `${hours}:${mins}:${secs}`;}}, 1000); }
+    
+    // --- MAIN EVENT LISTENERS ---
+    document.addEventListener('DOMContentLoaded', () => {
+        generateMockPapers();
+
+        const saveNextBtn = document.getElementById('save-next-btn');
+        const previousBtn = document.getElementById('previous-btn');
+        const markReviewBtn = document.getElementById('mark-review-btn');
+        const clearResponseBtn = document.getElementById('clear-response-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelSubmitBtn = document.getElementById('cancel-submit-btn');
+        const confirmSubmitBtn = document.getElementById('confirm-submit-btn');
+        const calculatorToggleBtn = document.getElementById('calculator-toggle-btn');
+        const calculatorCloseBtn = document.getElementById('calculator-close-btn');
+        const submitModal = document.getElementById('submit-modal');
+        const calculatorModal = document.getElementById('calculator-modal');
+        const backToSelectionBtn = document.getElementById('back-to-selection-btn');
+        
+        saveNextBtn.addEventListener('click', handleSaveNext);
+        previousBtn.addEventListener('click', goToPreviousQuestion);
+        markReviewBtn.addEventListener('click', handleMarkReview);
+        clearResponseBtn.addEventListener('click', handleClearResponse);
+        submitBtn.addEventListener('click', () => submitModal.classList.remove('hidden'));
+        cancelSubmitBtn.addEventListener('click', () => submitModal.classList.add('hidden'));
+        confirmSubmitBtn.addEventListener('click', () => { submitModal.classList.add('hidden'); submitExam(); });
+        backToSelectionBtn.addEventListener('click', () => {
+            showScreen('setup-screen');
+            renderPaperSelection();
+        });
+        calculatorToggleBtn.addEventListener('click', () => calculatorModal.classList.toggle('hidden'));
+        calculatorCloseBtn?.addEventListener('click', () => calculatorModal.classList.add('hidden'));
+        
+        showScreen('setup-screen');
+        renderPaperSelection();
+        
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ]
+        });
+    });
+    </script>
+</body>
+</html>
+
