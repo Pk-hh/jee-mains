@@ -12,7 +12,7 @@
     <!-- KaTeX for Math Rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMGmJoZBTT7LAYFXmEu8rTqsvDBiJRKLCpDSRMAqLr_mDRYFe" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCACeUdcgtQLQRYoI+Yt/mCM5vcfiJUSN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURPiLdVouFUNCTION" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURPiLdVouKTZOKHeLdQexLPAyBWMGOKauEpH1xHAmsDAGkYEVASaFw" crossorigin="anonymous"></script>
 
     <style>
         body {
@@ -176,8 +176,8 @@
                     <!-- Right Panel - Updated HTML Structure -->
                     <div class="bg-white rounded-md shadow-sm flex flex-col p-3">
                         <div class="flex items-center space-x-3 border-b pb-2">
-                            <img src="https://placehold.co/60x60/E2E8F0/4A5568?text=s" alt="User Avatar" class="rounded-full">
-                            <span class="font-bold text-lg">Student</span>
+                            <img src="https://placehold.co/60x60/E2E8F0/4A5568?text=S" alt="User Avatar" class="rounded-full">
+                            <span class="font-bold text-lg">STUDENT</span>
                         </div>
 
                         <!-- New Legend -->
@@ -220,7 +220,7 @@
             </div>
 
             <!-- Footer -->
-            <footer class="bg-gray-200 text-center text-xs py-1 fixed bottom-0 w-full">&copy;Designed and  Developed by electrON Studios</footer>
+            <footer class="bg-gray-200 text-center text-xs py-1 fixed bottom-0 w-full"> &copy;Designed and  Developed by electrON Studios</footer>
         </div>
     </div>
     
@@ -337,8 +337,8 @@
                 { section: "Physics", content: "The average kinetic energy of a molecule of the gas is:", options: ["proportional to absolute temperature", "proportional to volume", "proportional to pressure", "dependent on the nature of the gas"], answer: "proportional to absolute temperature" },
                 { section: "Physics", content: "A steel wire with mass per unit length \\(7.0 \\times 10^{-3} kg m^{-1}\\) is under tension of 70 N. The speed of transverse waves in the wire will be:", options: ["\\(200\\pi m s^{-1}\\)", "\\(100 m s^{-1}\\)", "\\(10 m s^{-1}\\)", "\\(50 m s^{-1}\\)"], answer: "\\(100 m s^{-1}\\)" },
                 { section: "Physics", content: "Let \\(\\sigma\\) be the uniform surface charge density of two infinite thin plane sheets. Then the electric fields in three different regions \\(E_I, E_{II}\\) and \\(E_{III}\\) are:", options: ["\\(E_I = 2\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = 2\\sigma/\\epsilon_0 \\hat{n}\\)", "\\(E_I = 0, E_{II} = \\sigma/\\epsilon_0 \\hat{n}, E_{III} = 0\\)", "\\(E_I = \\sigma/(2\\epsilon_0) \\hat{n}, E_{II} = 0, E_{III} = \\sigma/(2\\epsilon_0) \\hat{n}\\)", "\\(E_I = -\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = \\sigma/\\epsilon_0 \\hat{n}\\)"], answer: "\\(E_I = -\\sigma/\\epsilon_0 \\hat{n}, E_{II} = 0, E_{III} = \\sigma/\\epsilon_0 \\hat{n}\\)" },
-                { section: "Physics", content: "The equivalent resistance between A and B of the network shown in the figure is:", options: ["112R/3", "14R", "21R", "8R/3"], answer: "8R/3" },
-                { section: "Physics", content: "Find the magnetic field at the point P. The curved portion is a semicircle connected to two long straight wires.", options: ["\\(\\mu_0i / (2r) \\cdot (1 + 2/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1 + 1/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/\\pi)\\)"], answer: "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)" },
+                { section: "Physics", content: "The equivalent resistance between A and B of the network shown in the figure is:<br><div class='flex justify-center my-4'><img src='images/1.png' alt='Circuit Diagram'></div>", options: ["112R/3", "14R", "21R", "8R/3"], answer: "8R/3" },
+                { section: "Physics", content: "Find the magnetic field at the point P. The curved portion is a semicircle connected to two long straight wires.<br><div class='flex justify-center my-4'><img src='images/2.png' alt='Semicircle Wire'></div>", options: ["\\(\\mu_0i / (2r) \\cdot (1 + 2/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1 + 1/\\pi)\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)", "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/\\pi)\\)"], answer: "\\(\\mu_0i / (2r) \\cdot (1/2 + 1/(2\\pi))\\)" },
                 { section: "Physics", content: "Match List-I with List-II:<br><b>List I:</b> (A) AC generator, (B) Transformer, (C) Resonance phenomenon, (D) Sharpness of resonance<br><b>List II:</b> (I) Presence of both L and C, (II) Electromagnetic Induction, (III) Quality factor, (IV) Mutual Inductance", options: ["A-IV, B-II, C-I, D-III", "A-II, B-I, C-III, D-IV", "A-II, B-IV, C-I, D-III", "A-IV, B-III, C-I, D-II"], answer: "A-II, B-IV, C-I, D-III" },
                 { section: "Physics", content: "Match List-I with List-II:<br><b>List I:</b> (A) Microwaves, (B) Gamma rays, (C) Radio waves, (D) X-rays<br><b>List II:</b> (I) Radioactive decay of the nucleus, (II) Rapid acceleration and deceleration of electron in aerials, (III) Inner shell electrons, (IV) Klystron valve", options: ["A-I, B-II, C-III, D-IV", "A-IV, B-I, C-II, D-III", "A-I, B-III, C-IV, D-II", "A-IV, B-III, C-II, D-I"], answer: "A-IV, B-I, C-II, D-III" },
                 { section: "Physics", content: "‘n’ polarizing sheets are arranged such that each makes an angle 45° with the preceeding sheet. An unpolarized light of intensity I is incident into this arrangement. The output intensity is found to be I/64. The value of n will be:", options: ["3", "6", "5", "4"], answer: "6" },
@@ -360,22 +360,22 @@
                 { section: "Chemistry", content: "<b>Assertion A:</b> Hydrogen is an environment friendly fuel.<br><b>Reason R:</b> Atomic number of hydrogen is 1 and it is a very light element.", options: ["A is true but R is false", "Both A and R are true but R is NOT the correct explanation of A", "A is false but R is true", "Both A and R are true and R is the correct explanation of A"], answer: "Both A and R are true but R is NOT the correct explanation of A" },
                 { section: "Chemistry", content: "Match List I with List II<br>(A) Slaked lime (I) NaOH<br>(B) Dead burnt plaster (II) \\(Ca(OH)_2\\)<br>(C) Caustic soda (III) \\(Na_2CO_3 \\cdot 10H_2O\\)<br>(D) Washing soda (IV) \\(CaSO_4\\)", options: ["(A)-I, (B)-IV, (C)-II, (D)-III", "(A)-III, (B)-IV, (C)-II, (D)-I", "(A)-II, (B)-IV, (C)-I, (D)-III", "(A)-III, (B)-II, (C)-IV, (D)-I"], answer: "(A)-II, (B)-IV, (C)-I, (D)-III" },
                 { section: "Chemistry", content: "Choose the correct statement(s):<br>A. Beryllium oxide is purely acidic in nature.<br>B. Beryllium carbonate is kept in the atmosphere of \\(CO_2\\).<br>C. Beryllium sulphate is readily soluble in water.<br>D. Beryllium shows anomalous behavior.", options: ["A, B and C only", "B, C and D only", "A and B only", "A only"], answer: "B, C and D only" },
-                { section: "Chemistry", content: "Regarding resonance in carbonate ion \\(CO_3^{2-}\\), which of the following is true?", options: ["It is possible to identify each structure individually by some physical or chemical method.", "All these structures are in dynamic equilibrium with each other.", "Each structure exists for equal amount of time.", "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures."], answer: "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures." },
-                { section: "Chemistry", content: "But-2-yne is reacted separately with one mole of Hydrogen. Reaction with \\(H_2/Pd/C\\) gives product A. Reaction with \\(Na/liq NH_3\\) gives product B. Identify the incorrect statements from the options given below:<br>A. A is more soluble than B.<br>B. The boiling point & melting point of A are higher and lower than B respectively.<br>C. A is more polar than B because dipole moment of A is zero.<br>D. \\(Br_2\\) adds easily to B than A.", options: ["B and C only", "B, C and D only", "A, C and D only", "A and B only"], answer: "B, C and D only" },
+                { section: "Chemistry", content: "Regarding resonance in carbonate ion \\(CO_3^{2-}\\), which of the following is true?<br><div class='flex justify-center my-4'><img src='images/3.png' alt='Resonance Structures'></div>", options: ["It is possible to identify each structure individually by some physical or chemical method.", "All these structures are in dynamic equilibrium with each other.", "Each structure exists for equal amount of time.", "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures."], answer: "\\(CO_3^{2-}\\) has a single structure i.e., resonance hybrid of the above three structures." },
+                { section: "Chemistry", content: "But-2-yne is reacted separately with one mole of Hydrogen. Reaction with \\(H_2/Pd/C\\) gives product A. Reaction with \\(Na/liq NH_3\\) gives product B. Identify the incorrect statements from the options given below:<br><div class='flex justify-center my-4'><img src='images/4.jpeg' alt='But-2-yne Reaction'></div>A. A is more soluble than B.<br>B. The boiling point & melting point of A are higher and lower than B respectively.<br>C. A is more polar than B because dipole moment of A is zero.<br>D. \\(Br_2\\) adds easily to B than A.", options: ["B and C only", "B, C and D only", "A, C and D only", "A and B only"], answer: "B, C and D only" },
                 { section: "Chemistry", content: "How can photochemical smog be controlled?", options: ["By using tall chimneys", "By complete combustion of fuel", "By using catalytic converters in the automobiles/industry", "By using catalyst"], answer: "By using catalytic converters in the automobiles/industry" },
                 { section: "Chemistry", content: "Which of the following represents the lattice structure of \\(A_{0.95}O\\) containing \\(A^{2+}, A^{3+}\\) and \\(O^{2-}\\) ions?", options: ["A: 0.90 \\(A^{2+}\\), 0.05 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "B: 0.85 \\(A^{2+}\\), 0.10 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "C: 0.95 \\(A^{2+}\\), 0.00 \\(A^{3+}\\), 1 \\(O^{2-}\\)", "A and B only"], answer: "A: 0.90 \\(A^{2+}\\), 0.05 \\(A^{3+}\\), 1 \\(O^{2-}\\)" },
                 { section: "Chemistry", content: "<b>Assertion A:</b> Amongst He, Ne, Ar and Kr; 1 g of activated charcoal adsorbs more of Kr.<br><b>Reason R:</b> The critical volume \\(V_c\\) and critical pressure \\(P_c\\) is highest for Krypton but the compressibility factor at critical point \\(Z_c\\) is lowest for Krypton.", options: ["A is true but R is false", "A is false but R is true", "Both A and R are true but R is NOT the correct explanation of A", "Both A and R are true and R is the correct explanation A"], answer: "A is true but R is false" },
                 { section: "Chemistry", content: "<b>Assertion A:</b> In an Ellingham diagram, the oxidation of carbon to carbon monoxide shows a negative slope with respect to temperature.<br><b>Reason R:</b> CO tends to get decomposed at higher temperature.", options: ["Both A and R are correct and R is the correct explanation of A", "A is not correct but R is correct", "Both A and R are correct but R is NOT the correct explanation of A", "A is correct but R is not correct"], answer: "A is correct but R is not correct" },
                 { section: "Chemistry", content: "<b>Statement I:</b> Chlorine can easily combine with oxygen to form oxides: and the product has a tendency to explode.<br><b>Statement II:</b> Chemical reactivity of an element can be determined by its reaction with oxygen and halogens.", options: ["Both the statements I and II are true", "Statement I is true but Statement II is false", "Statement I is false but Statement II is true", "Both the Statements I and II are false"], answer: "Both the statements I and II are true" },
                 { section: "Chemistry", content: "A solution of \\(FeCl_3\\) when treated with \\(K_4[Fe(CN)_6]\\) gives a prussian blue precipitate due to the formation of:", options: ["\\(KFe_2[CN]_6\\)", "\\(Fe[Fe(CN)_6]\\)", "\\(Fe_3[Fe(CN)_6]_2\\)", "\\(Fe_4[Fe(CN)_6]_3\\)"], answer: "\\(Fe_4[Fe(CN)_6]_3\\)" },
-                { section: "Chemistry", content: "Highest oxidation state of Mn is exhibited in \\(Mn_2O_7\\). The correct statements about \\(Mn_2O_7\\) are:<br>(A) Mn is tetrahedrally surrounded by oxygen atoms<br>(B) Mn is octahedrally surrounded by oxygen atoms<br>(C) Contains Mn-O-Mn bridge<br>(D) Contains Mn-Mn bond.", options: ["A and C only", "A and D only", "B and D only", "B and C only"], answer: "A and C only" },
+                { section: "Chemistry", content: "Highest oxidation state of Mn is exhibited in \\(Mn_2O_7\\). The correct statements about \\(Mn_2O_7\\) are:<br><div class='flex justify-center my-4'><img src='images/5.jpeg' alt='Mn2O7 Structure'></div>(A) Mn is tetrahedrally surrounded by oxygen atoms<br>(B) Mn is octahedrally surrounded by oxygen atoms<br>(C) Contains Mn-O-Mn bridge<br>(D) Contains Mn-Mn bond.", options: ["A and C only", "A and D only", "B and D only", "B and C only"], answer: "A and C only" },
                 { section: "Chemistry", content: "Which of the following complex will show largest splitting of d-orbitals?", options: ["\\([Fe(C_2O_4)_3]^{3-}\\)", "\\([FeF_6]^{3-}\\)", "\\([Fe(CN)_6]^{3-}\\)", "\\([Fe(NH_3)_6]^{3+}\\)"], answer: "\\([Fe(CN)_6]^{3-}\\)" },
                 { section: "Chemistry", content: "Which of the following are the example of double salt?<br>(A) \\(FeSO_4 \\cdot (NH_4)_2SO_4 \\cdot 6H_2O\\)<br>(B) \\(CuSO_4 \\cdot 4NH_3 \\cdot H_2O\\)<br>(C) \\(K_2SO_4 \\cdot Al_2(SO_4)_3 \\cdot 24H_2O\\)<br>(D) \\(Fe(CN)_2 \\cdot 4KCN\\)", options: ["A and C only", "A and B only", "A, B and D only", "B and D only"], answer: "A and C only" },
                 { section: "Chemistry", content: "Identify the incorrect reaction option from the following:", options: ["Phenol + Zn dust → Benzene", "Aniline + \\(NaNO_2/HCl\\) (0-5°C) → Benzene diazonium chloride", "Benzaldehyde + Zn-Hg/HCl → Toluene", "Benzene + \\(CH_3Cl\\)/Anhydrous \\(AlCl_3\\) → Toluene"], answer: "Aniline + \\(NaNO_2/HCl\\) (0-5°C) → Benzene diazonium chloride" },
                 { section: "Chemistry", content: "Decreasing order of dehydration of the following alcohols is: a) tert-butyl alcohol b) n-butyl alcohol c) sec-butyl alcohol d) iso-butyl alcohol", options: ["a > d > b > c", "b > d > c > a", "b > a > d > c", "d > b > c > a"], answer: "b > d > c > a" },
                 { section: "Chemistry", content: "In the reaction: Anisole + HI → Product 'A', 'A' is:", options: ["Benzene + \\(CH_3I\\)", "Phenol + \\(CH_3I\\)", "Iodobenzene + \\(CH_3OH\\)", "Benzene + \\(CH_3OH\\)"], answer: "Phenol + \\(CH_3I\\)" },
                 { section: "Chemistry", content: "Match List I with List II:<br><b>List I:</b> (A) Tranquilizers, (B) Aspirin, (C) Antibiotic, (D) Antiseptic<br><b>List II:</b> (I) Anti blood clotting, (II) Salvarsan, (III) Antidepressant drugs, (IV) Soframicine", options: ["(A)–IV, (B)–II, (C)–I, (D)–III", "(A)–II, (B)–I, (C)–III, (D)–IV", "(A)–III, (B)–I, (C)–II, (D)–IV", "(A)–II, (B)–IV, (C)–I, (D)–III"], answer: "(A)–III, (B)–I, (C)–II, (D)–IV" },
-                { section: "Chemistry", content: "The correct representation in six membered pyranose form for the sugar D-glucose is:", options: ["alpha-D-glucopyranose", "beta-D-glucopyranose", "alpha-L-glucopyranose", "beta-L-glucopyranose"], answer: "beta-D-glucopyranose" },
+                { section: "Chemistry", content: "The correct representation in six membered pyranose form for the sugar D-glucose is:<br><div class='flex justify-center my-4'><img src='images/6.jpeg' alt='D-Glucose Pyranose Form'></div>", options: ["alpha-D-glucopyranose", "beta-D-glucopyranose", "alpha-L-glucopyranose", "beta-L-glucopyranose"], answer: "beta-D-glucopyranose" },
                 { section: "Chemistry", content: "Match List I and List II:<br><b>List I (Test):</b> (A) Molisch's Test, (B) Biuret Test, (C) Carbylamine Test, (D) Schiff's Test<br><b>List II (Functional group):</b> (I) Peptide, (II) Carbohydrate, (III) Primary amine, (IV) Aldehyde", options: ["(A)-I, (B)-II, (C)-III, (D)-IV", "(A)-III, (B)-IV, (C)-I, (D)-II", "(A)-II, (B)-I, (C)-III, (D)-IV", "(A)-III, (B)-IV, (C)-II, (D)-I"], answer: "(A)-II, (B)-I, (C)-III, (D)-IV" },
                 { section: "Chemistry", content: "The density of 3M solution of NaCl is \\(1.0 g mL^{-1}\\). Molality of the solution is ______ \\(\\times 10^{-2}\\) m (Nearest integer). Given: Molar mass of Na and Cl is 23 and 35.5 \\(g mol^{-1}\\) respectively.", options: [], answer: "364" },
                 { section: "Chemistry", content: "Electrons in a cathode ray tube have been emitted with a velocity of \\(1000 ms^{-1}\\). The number of following statements which is/are true about the emitted radiation is ______.<br>(A) The deBroglie wavelength of the electron emitted is 666.67 nm<br>(B) The characteristic of electrons emitted depend upon the material of the electrodes of the cathode ray tube.<br>(C) The cathode rays start from cathode and move towards anode.<br>(D) The nature of the emitted electrons depends on the nature of the gas present in cathode ray tube.", options: [], answer: "2" },
@@ -403,7 +403,7 @@
                 { section: "Maths", content: "Let \\(f(x) = 2x + \\tan^{-1}(x)\\) and \\(g(x) = \\log_e(\\sqrt{1+x^2} + x), x \\in [0, 3]\\). Then:", options: ["There exists \\(x \\in (0,3)\\) such that \\(f'(x) < g'(x)\\)", "\\(\\max f(x) > \\max g(x)\\)", "There exist \\(0 < x_1 < x_2 < 3\\) such that \\(f(x) < g(x), \\forall x \\in (x_1, x_2)\\)", "\\(\\min f'(x) = 1 + \\max g'(x)\\)"], answer: "\\(\\max f(x) > \\max g(x)\\)" },
                 { section: "Maths", content: "Let f(x) be the determinant of a 3x3 matrix with rows \\((1+\\sin^2x, \\cos^2x, \\sin2x)\\), \\((\\sin^2x, 1+\\cos^2x, \\sin2x)\\), \\((\\sin^2x, \\cos^2x, 1+\\sin2x)\\), for \\(x \\in [\\pi/6, \\pi/3]\\). If \\(\\alpha\\) and \\(\\beta\\) are the max and min values of f, then:", options: ["\\(\\beta^2 - 2\\sqrt{\\alpha} = 19/4\\)", "\\(\\beta^2 + 2\\sqrt{\\alpha} = 19/4\\)", "\\(\\alpha^2 - \\beta^2 = 4\\sqrt{3}\\)", "\\(\\alpha^2 + \\beta^2 = 9/2\\)"], answer: "\\(\\beta^2 - 2\\sqrt{\\alpha} = 19/4\\)" },
                 { section: "Maths", content: "\\(\\lim_{n\\to\\infty} [\\frac{1}{1+n} + \\frac{1}{2+n} + \\frac{1}{3+n} + \\dots + \\frac{1}{2n}]\\) is equal to:", options: ["0", "\\(\\log_e2\\)", "\\(\\log_e(3/2)\\)", "\\(\\log_e(2/3)\\)"], answer: "\\(\\log_e2\\)" },
-                { section: "Maths", content: "The area enclosed by the closed curve C given by \\(dy/dx + (x+a)/(y-2) = 0, y(1)=0\\) is \\(4\\pi\\). Let P,Q be intersection points of C and y-axis. If normals at P,Q on C intersect x-axis at R,S, then length of RS is:", options: ["\\(2\\sqrt{3}\\)", "\\(2\\sqrt{3}/3\\)", "2", "\\(4\\sqrt{3}/3\\)"], answer: "\\(4\\sqrt{3}/3\\)" },
+                { section: "Maths", content: "The area enclosed by the closed curve C given by \\(dy/dx + (x+a)/(y-2) = 0, y(1)=0\\) is \\(4\\pi\\). Let P,Q be intersection points of C and y-axis. If normals at P,Q on C intersect x-axis at R,S, then length of RS is:<br><div class='flex justify-center my-4'><img src='images/7.jpeg' alt='Curve Graph'></div>", options: ["\\(2\\sqrt{3}\\)", "\\(2\\sqrt{3}/3\\)", "2", "\\(4\\sqrt{3}/3\\)"], answer: "\\(4\\sqrt{3}/3\\)" },
                 { section: "Maths", content: "If \\(y=y(x)\\) is the solution curve of \\(dy/dx + y\\tan(x) = x\\sec(x), 0 \\le x \\le \\pi/3, y(0)=1\\), then \\(y(\\pi/6)\\) is equal to:", options: ["\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)", "\\(\\pi/12 + (\\sqrt{3}/2)\\log_e(2\\sqrt{3}/e)\\)", "\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2\\sqrt{3}/e)\\)", "\\(\\pi/12 + (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)"], answer: "\\(\\pi/12 - (\\sqrt{3}/2)\\log_e(2/(e\\sqrt{3}))\\)" },
                 { section: "Maths", content: "Let the image of the point P(2, -1, 3) in the plane \\(x + 2y - z = 0\\) be Q. Then the distance of the plane \\(3x + 2y + z + 29 = 0\\) from the point Q is:", options: ["\\(22\\sqrt{2}/7\\)", "\\(24\\sqrt{2}/7\\)", "\\(2\\sqrt{14}\\)", "\\(3\\sqrt{14}\\)"], answer: "\\(3\\sqrt{14}\\)" },
                 { section: "Maths", content: "The shortest distance between the lines \\((x-5)/1 = (y-2)/2 = (z-4)/(-3)\\) and \\((x+3)/1 = (y+5)/4 = (z-1)/(-5)\\) is:", options: ["\\(7\\sqrt{3}\\)", "\\(5\\sqrt{3}\\)", "\\(6\\sqrt{3}\\)", "\\(4\\sqrt{3}\\)"], answer: "\\(6\\sqrt{3}\\)" },
@@ -417,11 +417,949 @@
                 { section: "Maths", content: "Let A be the area bounded by the curve \\(y = x|x-3|\\), the x-axis and the ordinates x = -1 and x = 2. Then 12A is equal to _____.", options: [], answer: "62" },
                 { section: "Maths", content: "Let \\(f: \\mathbb{R} \\rightarrow \\mathbb{R}\\) be a differentiable function such that \\(f'(x) + f(x) = \\int_0^2 f(t)dt\\). If \\(f(0) = e^{-2}\\), then \\(2f(0) - f(2)\\) is equal to _____.", options: [], answer: "1" },
                 { section: "Maths", content: "Let \\(v = \\alpha\\hat{i}+2\\hat{j}-3\\hat{k}, w = 2\\alpha\\hat{i}+\\hat{j}-\\hat{k}\\). If the minimum value of the scalar triple product [u v w] is \\(-\\alpha\\sqrt{3401}\\), \\(|u|=\\sqrt{\\alpha} (\\alpha>0)\\), and \\(|u\\cdot\\hat{i}|^2 = m/n\\) where m,n are coprime, then m+n is equal to _____.", options: [], answer: "3501" },
-                { section: "Maths", content: "A(2,6,2), B(-4,0,\\(\\lambda\\)), C(2,3,-1) and D(4,5,0), \\(\\lambda \\le 5\\) are vertices of a quadrilateral ABCD. If its area is 18 square units, then \\(5-6\\lambda\\) is equal to _____.", options: [], answer: "11" }
+                { section: "Maths", content: "A(2,6,2), B(-4,0,\\(\\lambda\\)), C(2,3,-1) and D(4,5,0), \\(\\lambda \\le 5\\) are vertices of a quadrilateral ABCD. If its area is 18 square units, then \\(5-6\\lambda\\) is equal to _____:<br><div class='flex justify-center my-4'><img src='images/8.jpeg' alt='Quadrilateral Diagram'></div>", options: [], answer: "11" }
             ]
         };
 
         allPapersData.push(paper1);
+
+        const paper2 = {
+    questions: [
+        {
+            section: "Physics",
+            question_number: 1,
+            content: "If the velocity of light c, universal gravitational constant G and planck's constant h are chosen as fundamental quantities. The dimensions of mass in the new system is:",
+            options: [
+                "[h^(1/2)c^(1/2)G^1]",
+                "h^1 c^1 G^-1",
+                "[h^-(1/2)c^(1/2)G^(1/2)]",
+                "[h^(1/2)c^(1/2)G^-(1/2)]"
+            ],
+            answer: "[h^(1/2)c^(1/2)G^-(1/2)]"
+        },
+        {
+            section: "Physics",
+            question_number: 2,
+            content: "For a train engine moving with speed of 20 ms⁻¹, the driver must apply brakes at a distance of 500 m before the station for the train to come to rest at the station. If the brakes were applied at half of this distance, the train engine would cross the station with speed ___ ms⁻¹. The value of ___ is (Assuming same retardation is produced by brakes)",
+            options: [],
+            answer: "14.14"
+        },
+        {
+            section: "Physics",
+            question_number: 3,
+            content: "As shown in the figure a block of mass 10 kg lying on a horizontal surface is pulled by a force F acting at an angle 30° with horizontal. For μs = 0.25 the block will just start to move for the value of F: [Given g = 10 m·s⁻²]<br><div class='flex justify-center my-4'><img src='images/q3.png' alt='Physics Question 3'></div>",
+            options: [
+                "33.3 N",
+                "25.2 N",
+                "20 N",
+                "35.7 N"
+            ],
+            answer: "25.2 N"
+        },
+        {
+            section: "Physics",
+            question_number: 4,
+            content: "A block is fastened to a horizontal spring. The block is pulled to a distance x = 10 cm from its equilibrium position (at x = 0) on a frictionless surface from rest. The energy of the block at x = 5 cm is 0.25 J. The spring constant of the spring is ___ N m⁻¹.",
+            options: [],
+            answer: "66.67"
+        },
+        {
+            section: "Physics",
+            question_number: 5,
+            content: "A force F = (5 + 3y²) acts on a particle in the y-direction, where F is in newton and y is in meter. The work done by the force during a displacement from y = 2 m to y = 5 m is ___ J.",
+            options: [],
+            answer: "132"
+        },
+        {
+            section: "Physics",
+            question_number: 6,
+            content: "Figures (a), (b), (c) and (d) show variation of force with time. The impulse is highest in figure.<br><div class='flex justify-center my-4'><img src='images/q6.png' alt='Physics Question 6'></div>",
+            options: [
+                "Fig (c)",
+                "Fig (b)",
+                "Fig (a)",
+                "Fig (d)"
+            ],
+            answer: "Fig (b)"
+        },
+        {
+            section: "Physics",
+            question_number: 7,
+            content: "Moment of inertia of a disc of mass M and radius 'R' about any of its diameter is MR²/4. The moment of inertia of this disc about an axis normal to the disc and passing through a point on its edge will be, (x/2)MR². The value of x is ___.",
+            options: [],
+            answer: "3"
+        },
+        {
+            section: "Physics",
+            question_number: 8,
+            content: "The escape velocities of two planets A and B are in the ratio 1:2. If the ratio of their radii respectively is 1:3, then the ratio of acceleration due to gravity of planet A to the acceleration of gravity of planet B will be:",
+            options: [
+                "4/3",
+                "3/2",
+                "2/3",
+                "3/4"
+            ],
+            answer: "3/4"
+        },
+        {
+            section: "Physics",
+            question_number: 9,
+            content: "For a body projected at an angle with the horizontal from the ground, choose the correct statement.",
+            options: [
+                "Gravitational potential energy is maximum at the highest point.",
+                "The horizontal component of velocity is zero at highest point.",
+                "The vertical component of momentum is maximum at the highest point.",
+                "The kinetic energy (K.E.) is zero at the highest point of projectile motion."
+            ],
+            answer: "Gravitational potential energy is maximum at the highest point."
+        },
+        {
+            section: "Physics",
+            question_number: 10,
+            content: "The Young's modulus of a steel wire of length 6 m and cross-sectional area 3 mm², is 2 x 10¹¹ N/m². The wire is suspended from its support on a given planet. A block of mass 4 kg is attached to the free end of the wire. The acceleration due to gravity on the planet is 1/4 of its value on the earth. The elongation of wire is (Take g on the earth = 10 m/s²):",
+            options: [
+                "1 mm",
+                "0.1 mm",
+                "1 cm",
+                "0.1 cm"
+            ],
+            answer: "0.1 mm"
+        },
+        {
+            section: "Physics",
+            question_number: 11,
+            content: "The surface of water in a water tank of cross section area 750 cm² on the top of a house is h m above the tap level. The speed of water coming out through the tap of cross section area 500 mm² is 30 cm s⁻¹. At that instant, dh/dt is x × 10⁻³ ms⁻¹. The value of x will be ___.",
+            options: [],
+            answer: "2"
+        },
+        {
+            section: "Physics",
+            question_number: 12,
+            content: "For three low density gases A, B, C pressure versus temperature graphs are plotted while keeping them at constant volume, as shown in the figure. The temperature corresponding to the point K is:<br><div class='flex justify-center my-4'><img src='images/q12.png' alt='Physics Question 12'></div>",
+            options: [
+                "-273°C",
+                "-100°C",
+                "-373°C",
+                "-40°C"
+            ],
+            answer: "-273°C"
+        },
+        {
+            section: "Physics",
+            question_number: 13,
+            content: "A Carnot engine operating between two reservoirs has efficiency 1/3. When the temperature of cold reservoir raised by x, its efficiency decreases to 1/6. The value of x, if the temperature of hot reservoir is 99°C, will be ___.",
+            options: [
+                "16.5 K",
+                "33 K",
+                "66 K",
+                "62 K"
+            ],
+            answer: "62 K"
+        },
+        {
+            section: "Physics",
+            question_number: 14,
+            content: "Choose the correct length (L) versus square of time period (T²) graph for a simple pendulum executing simple harmonic motion.<br><div class='flex justify-center my-4'><img src='images/q14.png' alt='Physics Question 14'></div>",
+            options: [
+                "images/q14_opt1.png",
+                "images/q14_opt2.png",
+                "images/q14_opt3.png",
+                "images/q14_opt4.png"
+            ],
+            answer: "images/q14_opt3.png"
+        },
+        {
+            section: "Physics",
+            question_number: 15,
+            content: "A cubical volume is bounded by the surfaces x=0, x=a, y=0, y=a, z=0, z=a. The electric field in the region is given by E = E₀xî. Where E₀ = 4×10⁴ NC⁻¹m⁻¹. If a = 2 cm, the charge contained in the cubical volume is Q × 10⁻¹⁴ C. The value of Q is ___. (Take ε₀ = 9×10⁻¹² C²N⁻¹m⁻²)",
+            options: [],
+            answer: "288"
+        },
+        {
+            section: "Physics",
+            question_number: 16,
+            content: "Given below are two statements: One is labelled as Assertion A and the other is labelled as Reason R.\nAssertion A: Two metallic spheres are charged to the same potential. One of them is hollow and another is solid, and both have the same radii. Solid sphere will have lower charge than the hollow one.\nReason R: Capacitance of metallic spheres depend on the radii of spheres.\nIn the light of the above statements, choose the correct answer from the options given below.",
+            options: [
+                "A is false but R is true",
+                "Both A and R are true and R is the correct explanation of A",
+                "A is true but R is false",
+                "Both A and R are true but R is not the correct explanation of A"
+            ],
+            answer: "A is false but R is true"
+        },
+        {
+            section: "Physics",
+            question_number: 17,
+            content: "Given below are two statements: One is labelled as Assertion A and the other is labelled as Reason R.\nAssertion A: For measuring the potential difference across a resistance of 600 Ω, the voltmeter with resistance 1000 Ω will be preferred over voltmeter with resistance 4000 Ω.\nReason R: Voltmeter with higher resistance will draw smaller current than voltmeter with lower resistance.\nIn the light of the above statements, choose the most appropriate answer from the options given below.",
+            options: [
+                "A is not correct but R is correct",
+                "Both A and R are correct and R is the correct explanation of A",
+                "Both A and R are correct but R is not the correct explanation of A",
+                "A is correct but R is not correct"
+            ],
+            answer: "A is not correct but R is correct"
+        },
+        {
+            section: "Physics",
+            question_number: 18,
+            content: "Equivalent resistance between the adjacent corners of a regular n-sided polygon of uniform wire of resistance R would be :",
+            options: [
+                "(n-1)R / n²",
+                "(n-1)R / (2n-1)",
+                "n²R / (n-1)",
+                "(n-1)R / n"
+            ],
+            answer: "(n-1)R / n²"
+        },
+        {
+            section: "Physics",
+            question_number: 19,
+            content: "In the given circuit the value of |(I₁ + I₃) / I₂| is:<br><div class='flex justify-center my-4'><img src='images/q19.png' alt='Physics Question 19'></div>",
+            options: [],
+            answer: "9"
+        },
+        {
+            section: "Physics",
+            question_number: 20,
+            content: "A coil is placed in magnetic field such that plane of coil is perpendicular to the direction of magnetic field. The magnetic flux through a coil can be changed:\nA. By changing the magnitude of the magnetic field within the coil.\nB. By changing the area of coil within the magnetic field.\nC. By changing the angle between the direction of magnetic field and the plane of the coil.\nD. By reversing the magnetic field direction abruptly without changing its magnitude.\nChoose the most appropriate answer from the options given below:",
+            options: [
+                "A and B only",
+                "A, B and C only",
+                "A, B and D only",
+                "A and C only"
+            ],
+            answer: "A, B, C and D"
+        },
+        {
+            section: "Physics",
+            question_number: 21,
+            content: "As shown in the figure, a long straight conductor with semicircular arc of radius (π/10) m is carrying current I = 3A. The magnitude of the magnetic field at the center O of the arc is: (The permeability of the vacuum = 4π × 10⁻⁷ NA⁻²)<br><div class='flex justify-center my-4'><img src='images/q21.png' alt='Physics Question 21'></div>",
+            options: [
+                "6 μT",
+                "1 μT",
+                "4 μT",
+                "3 μT"
+            ],
+            answer: "3 μT"
+        },
+        {
+            section: "Physics",
+            question_number: 22,
+            content: "A square shaped coil of area 70 cm² having 600 turns rotates in a magnetic field of 0.4 Wb m⁻², about an axis which is parallel to one of the side of the coil and perpendicular to the direction of field. If the coil completes 500 revolution in a minute, the instantaneous emf when the plane of the coil is inclined at 60° with the field, will be ___ V. (Take π = 22/7)",
+            options: [],
+            answer: "44"
+        },
+        {
+            section: "Physics",
+            question_number: 23,
+            content: "The ratio of average electric energy density and total average energy density of electromagnetic wave is:",
+            options: [
+                "2",
+                "1",
+                "3",
+                "1/2"
+            ],
+            answer: "1/2"
+        },
+        {
+            section: "Physics",
+            question_number: 24,
+            content: "Two objects A and B are placed at 15 cm and 25 cm from the pole in front of a concave mirror having radius of curvature 40 cm. The distance between images formed by the mirror is:",
+            options: [
+                "40 cm",
+                "60 cm",
+                "160 cm",
+                "100 cm"
+            ],
+            answer: "160 cm"
+        },
+        {
+            section: "Physics",
+            question_number: 25,
+            content: "As shown in the figure, in Young's double slit experiment, a thin plate of thickness t = 10 μm and refractive index μ = 1.2 is inserted infront of slit S₁. The experiment is conducted in air (μ = 1) and uses a monochromatic light of wavelength λ = 500 nm. Due to the insertion of the plate, central maxima is shifted by a distance of xβ₀. β₀ is the fringe-width before the insertion of the plate. The value of the x is ___.<br><div class='flex justify-center my-4'><img src='images/q25.png' alt='Physics Question 25'></div>",
+            options: [],
+            answer: "4"
+        },
+        {
+            section: "Physics",
+            question_number: 26,
+            content: "The threshold frequency of metal is f₀. When the light of frequency 2f₀ is incident on the metal plate, the maximum velocity of photoelectron is v₁. When the frequency of incident radiation is increased to 5f₀, the maximum velocity of photoelectrons emitted is v₂. The ratio of v₁ to v₂ is:",
+            options: [
+                "v₁/v₂ = 1/2",
+                "v₁/v₂ = 1/8",
+                "v₁/v₂ = 1/16",
+                "v₁/v₂ = 1/4"
+            ],
+            answer: "v₁/v₂ = 1/2"
+        },
+        {
+            section: "Physics",
+            question_number: 27,
+            content: "An electron of a hydrogen like atom, having Z = 4, jumps from 4th energy state to 2nd energy state. The energy released in this process, will be: (Given Rch = 13.6 eV)",
+            options: [
+                "13.6 eV",
+                "10.5 eV",
+                "3.4 eV",
+                "40.8 eV"
+            ],
+            answer: "40.8 eV"
+        },
+        {
+            section: "Physics",
+            question_number: 28,
+            content: "Nucleus A having Z = 17 and equal number of protons and neutrons has 1.2 MeV binding energy per nucleon. Another nucleus B of Z = 12 has total 26 nucleons and 1.8 MeV binding energy per nucleons. The difference of binding energy of B and A will be ___ MeV.",
+            options: [],
+            answer: "6"
+        },
+        {
+            section: "Physics",
+            question_number: 29,
+            content: "Choose the correct statement about Zener diode:",
+            options: [
+                "It works as a voltage regulator in reverse bias and behaves like simple p-n junction diode in forward bias.",
+                "It works as a voltage regulator in both forward and reverse bias.",
+                "It works as a voltage regulator only in forward bias.",
+                "It works as a voltage regulator in forward bias and behaves like simple p-n junction diode in reverse bias."
+            ],
+            answer: "It works as a voltage regulator in reverse bias and behaves like simple p-n junction diode in forward bias."
+        },
+        {
+            section: "Physics",
+            question_number: 30,
+            content: "In an amplitude modulation, a modulating signal having amplitude of X V is superimposed with a carrier signal of amplitude Y V in first case. Then, in second case, the same modulating signal is superimposed with different carrier signal of amplitude 2Y V. The ratio of modulation index in the two cases respectively will be:",
+            options: [
+                "1:2",
+                "1:1",
+                "2:1",
+                "4:1"
+            ],
+            answer: "2:1"
+        },
+        {
+            section: "Chemistry",
+            question_number: 31,
+            content: "The molality of a 10% (v/V) solution of di-bromine solution in CCl₄ (carbon tetrachloride) is x × 10⁻² M. (Nearest integer) [Given: molar mass of Br₂ = 160g mol⁻¹, atomic mass of C = 12g mol⁻¹, atomic mass of Cl = 35.5 g mol⁻¹, density of dibromine = 3.2 g cm⁻³, density of CCl₄ = 1.6g cm⁻³]",
+            options: [],
+            answer: "139"
+        },
+        {
+            section: "Chemistry",
+            question_number: 32,
+            content: "Which one of the following sets of ions represents a collection of isoelectronic species? (Given: Atomic Number: F:9, Cl:17, Na=11, Mg=12, Al=13, K=19, Ca=20, Sc=21)",
+            options: [
+                "(Li⁺, Na⁺, Mg²⁺, Ca²⁺)",
+                "(Ba²⁺, Sr²⁺, K⁺, Ca²⁺)",
+                "(N³⁻, O²⁻, F⁻, S²⁻)",
+                "(K⁺, Cl⁻, Ca²⁺, Sc³⁺)"
+            ],
+            answer: "(K⁺, Cl⁻, Ca²⁺, Sc³⁺)"
+        },
+        {
+            section: "Chemistry",
+            question_number: 33,
+            content: "For electron gain enthalpies of the elements denoted as ΔegH, the incorrect option is:",
+            options: [
+                "ΔegH(Cl) < ΔegH(F)",
+                "ΔegH(Se) < ΔegH(S)",
+                "ΔegH(I) < ΔegH(At)",
+                "ΔegH(Te) < ΔegH(Po)"
+            ],
+            answer: "ΔegH(I) < ΔegH(At)"
+        },
+        {
+            section: "Chemistry",
+            question_number: 34,
+            content: "0.3 g of ethane undergoes combustion at 27°C in a bomb calorimeter. The temperature of calorimeter system (including the water) is found to rise by 0.5°C. The heat evolved during combustion of ethane at constant pressure is ___ kJ mol⁻¹. (Nearest integer) [Given: The heat capacity of the calorimeter system is 20 kJ K⁻¹, R = 8.3 JK⁻¹mol⁻¹. Assume ideal gas behaviour. Atomic mass of C and H are 12 and 1 g mol⁻¹ respectively]",
+            options: [],
+            answer: "-1006"
+        },
+        {
+            section: "Chemistry",
+            question_number: 35,
+            content: "The effect of addition of helium gas to the following reaction in equilibrium state at constant volume, is: PCl₅(g) ⇌ PCl₃(g) + Cl₂(g)",
+            options: [
+                "the equilibrium will shift in the forward direction and more of Cl₂ and PCl₃ gases will be produced.",
+                "the equilibrium will go backward due to suppression of dissociation of PCl₅.",
+                "helium will deactivate PCl₅ and reaction will stop.",
+                "addition of helium will not affect the equilibrium."
+            ],
+            answer: "addition of helium will not affect the equilibrium."
+        },
+        {
+            section: "Chemistry",
+            question_number: 36,
+            content: "Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): An aqueous solution of KOH when for volumetric analysis, its concentration should be checked before the use.\nReason (R): On aging, KOH solution absorbs atmospheric CO₂.\nIn the light of the above statements, choose the correct answer from the options given below.",
+            options: [
+                "(A) is not correct but (R) is correct",
+                "Both (A) and (R) are correct but (R) is not the correct explanation of (A)",
+                "Both (A) and (R) are correct and (R) is the correct explanation of (A)",
+                "(A) is correct but (R) is not correct"
+            ],
+            answer: "Both (A) and (R) are correct and (R) is the correct explanation of (A)"
+        },
+        {
+            section: "Chemistry",
+            question_number: 37,
+            content: "O-O bond length in H₂O₂ is X than the O-O bond length in F₂O₂. The O-H bond length in H₂O₂ is Y than that of the O-F bond in F₂O₂. Choose the correct option for X and Y from the given below.",
+            options: [
+                "X - shorter, Y - shorter",
+                "X - shorter, Y - longer",
+                "X - longer, Y - longer",
+                "X - longer, Y - shorter"
+            ],
+            answer: "X - longer, Y - shorter"
+        },
+        {
+            section: "Chemistry",
+            question_number: 38,
+            content: "The starting material for convenient preparation of deuterated hydrogen peroxide (D₂O₂) in laboratory is:",
+            options: [
+                "K₂S₂O₈",
+                "2-ethylanthraquinol",
+                "BaO₂",
+                "BaO"
+            ],
+            answer: "K₂S₂O₈"
+        },
+        {
+            section: "Chemistry",
+            question_number: 39,
+            content: "Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Gypsum is used for making fireproof wall boards.\nReason (R): Gypsum is unstable at high temperatures.\nIn the light of the above statements, choose the correct answer from the options given below:",
+            options: [
+                "Both (A) and (R) are correct but (R) is not the correct explanation of (A).",
+                "(A) is correct but (R) is not correct.",
+                "(A) is not correct but (R) is correct.",
+                "Both (A) and (R) are correct and (R) is the correct explanation of (A)."
+            ],
+            answer: "Both (A) and (R) are correct and (R) is the correct explanation of (A)."
+        },
+        {
+            section: "Chemistry",
+            question_number: 40,
+            content: "The correct order of bond enthalpy (kJ mol⁻¹) is:",
+            options: [
+                "Si-Si > C-C > Sn-Sn > Ge-Ge",
+                "Si-Si > C-C > Ge-Ge > Sn-Sn",
+                "C-C > Si-Si > Sn-Sn > Ge-Ge",
+                "C-C > Si-Si > Ge-Ge > Sn-Sn"
+            ],
+            answer: "C-C > Si-Si > Ge-Ge > Sn-Sn"
+        },
+        {
+            section: "Chemistry",
+            question_number: 41,
+            content: "Given below are two statements:\nStatement I: Sulphanilic acid gives esterification test for carboxyl group.\nStatement II: Sulphanilic acid gives red colour in Lassigne's test for extra element detection.\nIn the light of the above statements, choose the most appropriate answer from the options given below:",
+            options: [
+                "Statement I is correct but Statement II is incorrect.",
+                "Both Statement I and Statement II are incorrect",
+                "Both Statement I and Statement II are correct",
+                "Statement I is incorrect but Statement II is correct."
+            ],
+            answer: "Both Statement I and Statement II are incorrect"
+        },
+        {
+            section: "Chemistry",
+            question_number: 42,
+            content: "Testosterone, which is a steroidal hormone, has the following structure. The total number of asymmetric carbon atom/s in testosterone is ___.<br><div class='flex justify-center my-4'><img src='images/q42.png' alt='Chemistry Question 42'></div>",
+            options: [],
+            answer: "6"
+        },
+        {
+            section: "Chemistry",
+            question_number: 43,
+            content: "For the reaction shown, 'X' is:<br><div class='flex justify-center my-4'><img src='images/q43.png' alt='Chemistry Question 43'></div>",
+            options: [
+                "images/q43_opt1.png",
+                "images/q43_opt2.png",
+                "images/q43_opt3.png",
+                "images/q43_opt4.png"
+            ],
+            answer: "images/q43_opt3.png"
+        },
+        {
+            section: "Chemistry",
+            question_number: 44,
+            content: "The industrial activity held least responsible for global warming is:",
+            options: [
+                "manufacturing of cement",
+                "steel manufacturing",
+                "Electricity generation in thermal power plants.",
+                "Industrial production of urea"
+            ],
+            answer: "Industrial production of urea"
+        },
+        {
+            section: "Chemistry",
+            question_number: 45,
+            content: "A metal M crystallizes into two lattices:- face centred cubic (fcc) and body centred cubic (bcc) with unit cell edge length of 2.0 and 2.5 Å respectively. The ratio of densities of lattices fcc to bcc for the metal M is ___ (Nearest integer).",
+            options: [],
+            answer: "2"
+        },
+        {
+            section: "Chemistry",
+            question_number: 46,
+            content: "20% of acetic acid is dissociated when its 5 g is added to 500 mL of water. The depression in freezing point of such water is ___ × 10⁻³ °C. Atomic mass of C, H and O are 12, 1 and 16 a.m.u. respectively. [Given: Molal depression constant and density of water are 1.86 K kg mol⁻¹ and 1 g cm⁻³ respectively.]",
+            options: [],
+            answer: "372"
+        },
+        {
+            section: "Chemistry",
+            question_number: 47,
+            content: "1×10⁻⁵ M AgNO₃ is added to 1 L of saturated solution of AgBr. The conductivity of this solution at 298 K is ___ × 10⁻⁸ S m⁻¹. [Given: Ksp(AgBr) = 4.9×10⁻¹³ at 298 K, λ°(Ag⁺) = 6×10⁻³ Sm²mol⁻¹, λ°(Br⁻) = 8×10⁻³ Sm²mol⁻¹, λ°(NO₃⁻) = 7×10⁻³ Sm²mol⁻¹]",
+            options: [],
+            answer: "13"
+        },
+        {
+            section: "Chemistry",
+            question_number: 48,
+            content: "The graph which represents the following reaction is: (C₆H₅)₃C-Cl --(OH⁻/Pyridine)--> (C₆H₅)₃C-OH",
+            options: [
+                "images/q48_opt1.png",
+                "images/q48_opt2.png",
+                "images/q48_opt3.png",
+                "images/q48_opt4.png"
+            ],
+            answer: "images/q48_opt1.png"
+        },
+        {
+            section: "Chemistry",
+            question_number: 49,
+            content: "A → B. The above reaction is of zero order. Half life of this reaction is 50 min. The time taken for the concentration of A to reduce to one-fourth of its initial value is ___ min. (Nearest integer)",
+            options: [],
+            answer: "75"
+        },
+        {
+            section: "Chemistry",
+            question_number: 50,
+            content: "In figure, a straight line is given for Freundrich Adsorption (y = 3x + 2.505). The value of 1/n and log K are respectively:<br><div class='flex justify-center my-4'><img src='images/q50.png' alt='Chemistry Question 50'></div>",
+            options: [
+                "0.3 and log 2.505",
+                "0.3 and 0.7033",
+                "3 and 2.505",
+                "3 and 0.7033"
+            ],
+            answer: "3 and 2.505"
+        },
+        {
+            section: "Chemistry",
+            question_number: 51,
+            content: "Among following compounds, the number of those present in copper matte is ___. A. CuCO₃, B. Cu₂S, C. Cu₂O, D. FeO",
+            options: [],
+            answer: "1"
+        },
+        {
+            section: "Chemistry",
+            question_number: 52,
+            content: "Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): Cu²⁺ in water is more stable than Cu⁺.\nReason (R): Enthalpy of hydration for Cu²⁺ is much less than that of Cu⁺.\nIn the light of the above statements, choose the correct answer from the options given below :",
+            options: [
+                "Both (A) and (R) are correct and (R) is the correct explanation of (A).",
+                "(A) is correct but (R) is not correct.",
+                "(A) is not correct but (R) is correct.",
+                "Both (A) and (R) are correct but (R) is not the correct explanation of (A)."
+            ],
+            answer: "(A) is correct but (R) is not correct."
+        },
+        {
+            section: "Chemistry",
+            question_number: 53,
+            content: "Which element is not present in Nessler's reagent?",
+            options: [
+                "Mercury",
+                "Potassium",
+                "Iodine",
+                "Oxygen"
+            ],
+            answer: "Oxygen"
+        },
+        {
+            section: "Chemistry",
+            question_number: 54,
+            content: "The complex cation which has two isomers is:",
+            options: [
+                "[Co(H₂O)₆]³⁺",
+                "[Co(NH₃)₅Cl]²⁺",
+                "[Co(NH₃)₅NO₂]²⁺",
+                "[Co(NH₃)₅Cl]⁺"
+            ],
+            answer: "[Co(NH₃)₅NO₂]²⁺"
+        },
+        {
+            section: "Chemistry",
+            question_number: 55,
+            content: "The spin only magnetic moment of [Mn(H₂O)₆]²⁺ complexes is ___ B.M. (Nearest integer) (Given atomic number of Mn = 25)",
+            options: [],
+            answer: "6"
+        },
+        {
+            section: "Chemistry",
+            question_number: 56,
+            content: "The structures of major products A, B and C in the following reaction are sequence:<br><div class='flex justify-center my-4'><img src='images/q56.png' alt='Chemistry Question 56'></div>",
+            options: [
+                "images/q56_opt1.png",
+                "images/q56_opt2.png",
+                "images/q56_opt3.png",
+                "images/q56_opt4.png"
+            ],
+            answer: "images/q56_opt2.png"
+        },
+        {
+            section: "Chemistry",
+            question_number: 57,
+            content: "In a reaction, reagents 'X' and 'Y' respectively are:<br><div class='flex justify-center my-4'><img src='images/q57.png' alt='Chemistry Question 57'></div>",
+            options: [
+                "(CH₃CO)₂O/H⁺ and CH₃OH/H⁺, Δ",
+                "(CH₃CO)₂O/H⁺ and (CH₃CO)₂O/H⁺",
+                "CH₃OH/H⁺, Δ and CH₃OH/H⁺, Δ",
+                "CH₃OH/H⁺, Δ and (CH₃CO)₂O/H⁺"
+            ],
+            answer: "(CH₃CO)₂O/H⁺ and CH₃OH/H⁺, Δ"
+        },
+        {
+            section: "Chemistry",
+            question_number: 58,
+            content: "Among the following, the number of tranquilizer/s is/are ___. A. Chloriazepoxide, B. Veronal, C. Valium, D. Salvarsan",
+            options: [],
+            answer: "3"
+        },
+        {
+            section: "Chemistry",
+            question_number: 59,
+            content: "All structures given below are of vitamin C. Most stable of them is::<br><div class='flex justify-center my-4'><img src='images/q59.png' alt='Chemistry Question 57'></div>",
+            options: [
+                "images/q59_opt1.png",
+                "images/q59_opt2.png",
+                "images/q59_opt3.png",
+                "images/q59_opt4.png"
+            ],
+            answer: "images/q59_opt1.png"
+        },
+        {
+            section: "Chemistry",
+            question_number: 60,
+            content: "Given below are two statements: one is labelled as Assertion (A) and the other is labelled as Reason (R).\nAssertion (A): α-halocarboxylic acid on reaction with dil. NH₃ gives good yield of α-amino carboxylic acid whereas the yield of amines is very low when prepared from alkyl halides.\nReason (R): Amino acids exist in zwitter ion form in aqueous medium.\nIn the light of the above statements, choose the correct answer from the options given below :",
+            options: [
+                "Both (A) and (R) are correct and (R) is the correct explanation of (A).",
+                "Both (A) and (R) are correct but (R) is not the correct explanation of (A).",
+                "(A) is correct but (R) is not correct.",
+                "(A) is not correct but (R) is correct."
+            ],
+            answer: "Both (A) and (R) are correct but (R) is not the correct explanation of (A)."
+        },
+        {
+            section: "Mathematics",
+            question_number: 61,
+            content: "The number of integral values of k, for which one root of the equation 2x² - 8x + k = 0 lies in the interval (1, 2) and its other root lies in the interval (2, 3), is:",
+            options: [
+                "2",
+                "0",
+                "1",
+                "3"
+            ],
+            answer: "1"
+        },
+        {
+            section: "Mathematics",
+            question_number: 62,
+            content: "Let a, b be two real numbers such that ab < 0. If the complex number (1+ai)/(b+i) is of unit modulus and a+ib lies on the circle |z-1| = |2z|, then a possible value of (1+[a])/(4b), where [t] is greatest integer function, is:",
+            options: [
+                "0",
+                "-1",
+                "1",
+                "1/2"
+            ],
+            answer: "-1"
+        },
+        {
+            section: "Mathematics",
+            question_number: 63,
+            content: "Number of integral solutions to the equation x + y + z = 21, where x ≥ 1, y ≥ 3, z ≥ 4, is equal to ___.",
+            options: [],
+            answer: "105"
+        },
+        {
+            section: "Mathematics",
+            question_number: 64,
+            content: "The total number of six digit numbers, formed using the digits 4, 5, 9 only and divisible by 6, is ___.",
+            options: [],
+            answer: "81"
+        },
+        {
+            section: "Mathematics",
+            question_number: 65,
+            content: "The sum Σ (from n=1 to ∞) of (2n² + 3n + 4) / (2n)! is equal to:",
+            options: [
+                "11e/2 + 7/(2e)",
+                "13e/4 + 5/(4e) - 4",
+                "11e/2 + 7/(2e) - 4",
+                "13e/4 + 5/(4e)"
+            ],
+            answer: "13e/4 + 5/(4e)"
+        },
+        {
+            section: "Mathematics",
+            question_number: 66,
+            content: "The sum of the common terms of the following three arithmetic progressions. 3, 7, 11, 15, ..., 399, 2, 5, 8, 11, ..., 359 and 2, 7, 12, 17, ..., 197, is equal to ___.",
+            options: [],
+            answer: "321"
+        },
+        {
+            section: "Mathematics",
+            question_number: 67,
+            content: "If the term without x in the expansion of (x²/³ + α/x³)¹² is 7315, then |α| is equal to ___.",
+            options: [],
+            answer: "1"
+        },
+        {
+            section: "Mathematics",
+            question_number: 68,
+            content: "Let the sixth term in the binomial expansion of (√(2^(log₂(10-3^x))) + ⁵√(2^((x-2)log₂3)))^m, in the increasing powers of 2^((x-2)log₂3), be 21. If the binomial coefficients of the second, third and fourth terms in the expansion are respectively the first, third and fifth terms of an A.P., then the sum of the squares of all possible values of x is ___.",
+            options: [],
+            answer: "4"
+        },
+        {
+            section: "Mathematics",
+            question_number: 69,
+            content: "If the y-intercept of a focal chord of the parabola y² = 8x + 4y + 4 is 3, then the length of this chord is equal to ___.",
+            options: [],
+            answer: "22"
+        },
+        {
+            section: "Mathematics",
+            question_number: 70,
+            content: "The line x = 8 is the directrix of the ellipse E: x²/a² + y²/b² = 1 with the corresponding focus (2,0). If the tangent to E at the point P in the first quadrant passes through the point (0, 4√3) and intersects the x-axis at Q, then (3PQ)² is equal to ___.",
+            options: [],
+            answer: "39"
+        },
+        {
+            section: "Mathematics",
+            question_number: 71,
+            content: "Let P(x₀, y₀) be the point on the hyperbola 3x² - 4y² = 36, which is nearest to the line 3x + 2y = 1. Then √2(y₀ - x₀) is equal to:",
+            options: [
+                "-3",
+                "9",
+                "-9",
+                "3"
+            ],
+            answer: "-9"
+        },
+        {
+            section: "Mathematics",
+            question_number: 72,
+            content: "Which of the following statements is a tautology?",
+            options: [
+                "p → (p ∧ (p → q))",
+                "(p ∧ q) → (¬p → q)",
+                "(p ∧ (p → q)) → ¬q",
+                "p ∨ (p ∧ q)"
+            ],
+            answer: "(p ∧ q) → (¬p → q)"
+        },
+        {
+            section: "Mathematics",
+            question_number: 73,
+            content: "Let 9 = x₁ < x₂ < ... < x₇ be in an A.P. with common difference d. If the standard deviation of x₁, x₂, ..., x₇ is 4 and the mean is x̄, then x̄ + x₆ is equal to:",
+            options: [
+                "18(1 + 1/√3)",
+                "34",
+                "2(9 + 8/√7)",
+                "25"
+            ],
+            answer: "34"
+        },
+        {
+            section: "Mathematics",
+            question_number: 74,
+            content: "Let P(S) denote the power set of S = {1, 2, 3, ..., 10}. Define the relations R₁ and R₂ on P(S) as AR₁B if (A ∩ Bᶜ) ∪ (B ∩ Aᶜ) = ∅ and AR₂B if A ∪ Bᶜ = B ∪ Aᶜ, ∀ A, B ∈ P(S). Then:",
+            options: [
+                "both R₁ and R₂ are equivalence relations",
+                "only R₁ is an equivalence relation",
+                "only R₂ is an equivalence relation",
+                "both R₁ and R₂ are not equivalence relations"
+            ],
+            answer: "both R₁ and R₂ are equivalence relations"
+        },
+        {
+            section: "Mathematics",
+            question_number: 75,
+            content: "If A = (1/2) * [[1, √3], [-√3, 1]], then:",
+            options: [
+                "A³⁰ - A²⁵ = 2I",
+                "A³⁰ + A²⁵ + A = I",
+                "A³⁰ + A²⁵ - A = I",
+                "A³⁰ = A²⁵"
+            ],
+            answer: "A³⁰ + A²⁵ - A = I"
+        },
+        {
+            section: "Mathematics",
+            question_number: 76,
+            content: "For the system of linear equations αx + y + z = 1, x + αy + z = 1, x + y + αz = β, which one of the following statements is NOT correct?",
+            options: [
+                "It has infinitely many solutions if α = 2 and β = -1",
+                "It has no solution if α = -2 and β = 1",
+                "x + y + z = 3/4 if α = 2 and β = 1",
+                "It has infinitely many solutions if α = 1 and β = 1"
+            ],
+            answer: "It has infinitely many solutions if α = 2 and β = -1"
+        },
+        {
+            section: "Mathematics",
+            question_number: 77,
+            content: "Let S = {x ∈ R : 0 < x < 1 and 2 tan⁻¹((1-x)/(1+x)) = cos⁻¹((1-x²)/(1+x²))}. If n(S) denotes the number of elements in S then:",
+            options: [
+                "n(S) = 2 and only one element in S is less then 1/2",
+                "n(S) = 1 and the element in S is more than 1/2",
+                "n(S) = 1 and the element in S is less then 1/2",
+                "n(S) = 0"
+            ],
+            answer: "n(S) = 1 and the element in S is less then 1/2"
+        },
+        {
+            section: "Mathematics",
+            question_number: 78,
+            content: "Let f: R - {0, 1} → R be a function such that f(x) + f(1/(1-x)) = 1+x. Then f(2) is equal to:",
+            options: [
+                "9/2",
+                "9/4",
+                "7/4",
+                "7/3"
+            ],
+            answer: "9/4"
+        },
+        {
+            section: "Mathematics",
+            question_number: 79,
+            content: "If y(x) = x^x, x > 0, then y''(2) - 2y'(2) is equal to:",
+            options: [
+                "8 logₑ2 - 2",
+                "4 logₑ2 + 2",
+                "4(logₑ2)² - 2",
+                "4(logₑ2)² + 2"
+            ],
+            answer: "4(logₑ2)² + 2"
+        },
+        {
+            section: "Mathematics",
+            question_number: 80,
+            content: "The sum of the absolute maximum and minimum values of the function f(x) = |x² - 5x + 6| - 3x + 2 in the interval [-1, 3] is equal to:",
+            options: [
+                "10",
+                "12",
+                "13",
+                "24"
+            ],
+            answer: "13"
+        },
+        {
+            section: "Mathematics",
+            question_number: 81,
+            content: "The value of the integral ∫ (from -π/4 to π/4) of (x + π/4) / (2 - cos(2x)) dx is:",
+            options: [
+                "π² / 6",
+                "π² / (12√3)",
+                "π² / (3√3)",
+                "π² / (6√3)"
+            ],
+            answer: "π² / (6√3)"
+        },
+        {
+            section: "Mathematics",
+            question_number: 82,
+            content: "If ∫ (from 0 to π) of (5^cos(x) * (1 + cos(x)cos(3x) + cos²(x) + cos³(x)cos(3x))) / (1 + 5^cos(x)) dx = kπ / 16, then k is equal to ___.",
+            options: [],
+            answer: "13"
+        },
+        {
+            section: "Mathematics",
+            question_number: 83,
+            content: "The area of the region given by {(x, y) : xy ≤ 8, 1 ≤ y ≤ x²} is:",
+            options: [
+                "8 logₑ2 - 13/3",
+                "16 logₑ2 - 14/3",
+                "8 logₑ2 + 7/6",
+                "16 logₑ2 + 7/3"
+            ],
+            answer: "16 logₑ2 - 14/3"
+        },
+        {
+            section: "Mathematics",
+            question_number: 84,
+            content: "Let αx = exp(x^β y^γ) be the solution of the differential equation 2x²y dy - (1 - xy²) dx = 0, x > 0, y(2) = √(logₑ2). Then α + β - γ equals:",
+            options: [
+                "1",
+                "-1",
+                "0",
+                "3"
+            ],
+            answer: "3"
+        },
+        {
+            section: "Mathematics",
+            question_number: 85,
+            content: "Let a = 5i - j - 3k and b = i + 3j + 5k be two vectors. Then which one of the following statements is TRUE?",
+            options: [
+                "Projection of a on b is -13/√35 and the direction of the projection vector is opposite to the direction of b.",
+                "Projection of a on b is -17/√35 and the direction of the projection vector is opposite to the direction of b.",
+                "Projection of a on b is 17/√35 and the direction of the projection vector is opposite to the direction of b.",
+                "Projection of a on b is 13/√35 and the direction of the projection vector is opposite to the direction of a."
+            ],
+            answer: "Projection of a on b is -13/√35 and the direction of the projection vector is opposite to the direction of b."
+        },
+        {
+            section: "Mathematics",
+            question_number: 86,
+            content: "Let a = 2i - 7j + 5k, b = i + k and c = i + 2j - 3k be three given vectors. If r is a vector such that r × a = c × a and r · b = 0, then |r| is equal to:",
+            options: [
+                "(11/7)√2",
+                "11/7",
+                "(11/5)√2",
+                "√914 / 7"
+            ],
+            answer: "(11/7)√2"
+        },
+        {
+            section: "Mathematics",
+            question_number: 87,
+            content: "Let the plane P pass through the intersection of the planes 2x + 3y - z = 2 and x + 2y + 3z = 6, and be perpendicular to the plane 2x + y - z + 1 = 0. If d is the distance of P from the point (-7, 1, 1), then d² is equal to:",
+            options: [
+                "250/83",
+                "15/53",
+                "25/83",
+                "250/82"
+            ],
+            answer: "250/83"
+        },
+        {
+            section: "Mathematics",
+            question_number: 88,
+            content: "Let αx + βy + γz = 1 be the equation of a plane passing through the point (3, -2, 5) and perpendicular to the line joining the points (1, 2, 3) and (-2, 3, 5). Then the value of |αβγ| is equal to ___.",
+            options: [],
+            answer: "6"
+        },
+        {
+            section: "Mathematics",
+            question_number: 89,
+            content: "The point of intersection C of the plane 8x + y + 2z = 0 and the line joining the points A(-3, -6, 1) and B(2, 4, -3) divides the line segment AB internally in the ratio k:1. If a, b, c (a, b, c are coprime) are the direction ratios of the perpendicular from the point C on the line (1-x)/1 = (y+4)/2 = (z+2)/3, then |a + b + c| is equal to ___.",
+            options: [],
+            answer: "10"
+        },
+        {
+            section: "Mathematics",
+            question_number: 90,
+            content: "Two dice are thrown independently. Let A be the event that the number appeared on the 1st die is less than the number appeared on the 2nd die, B be the event that the number appeared on the 1st die is even and that on the second die is odd, and C be the event that the number appeared on the 1st die is odd and that on the 2nd is even. Then:",
+            options: [
+                "The number of favourable cases of the event (A ∪ B) ∩ C is 6",
+                "A and B are mutually exclusive",
+                "The number of favourable cases of the events A, B and C are 15, 6 and 6 respectively",
+                "B and C are independent"
+            ],
+            answer: "The number of favourable cases of the event (A ∪ B) ∩ C is 6"
+        }
+    ]
+};
+
+ allPapersData.push(paper2);
+        
         const subjects = ["Physics", "Chemistry", "Maths"];
         for (let i = 1; i < 70; i++) {
             const subject = subjects[i % 3];
@@ -431,6 +1369,256 @@
         }
     }
     
+    // --- CALCULATOR LOGIC ---
+    function initializeCalculator() {
+        const calculator = document.getElementById('calculator-modal');
+        if (!calculator) return;
+
+        const header = document.getElementById('calculator-header');
+        const mainDisplay = document.getElementById('calculator-main-display');
+        const historyDisplay = document.getElementById('calculator-history-display');
+        const buttonsContainer = document.getElementById('calculator-buttons');
+        const angleRadios = document.querySelectorAll('input[name="angle"]');
+
+        let mainDisplayValue = '0';
+        let historyDisplayValue = '';
+        let firstOperand = null;
+        let operator = null;
+        let waitingForSecondOperand = false;
+        let memory = 0;
+        let angleMode = 'DEG'; // Default to degrees
+
+        function updateDisplay() {
+            mainDisplay.value = mainDisplayValue;
+            historyDisplay.value = historyDisplayValue;
+        }
+
+        function resetCalculator() {
+            mainDisplayValue = '0';
+            historyDisplayValue = '';
+            firstOperand = null;
+            operator = null;
+            waitingForSecondOperand = false;
+        }
+
+        function inputDigit(digit) {
+            if (waitingForSecondOperand) {
+                mainDisplayValue = digit;
+                waitingForSecondOperand = false;
+            } else {
+                mainDisplayValue = mainDisplayValue === '0' ? digit : mainDisplayValue + digit;
+            }
+        }
+
+        function inputDecimal(dot) {
+            if (waitingForSecondOperand) {
+                mainDisplayValue = '0.';
+                waitingForSecondOperand = false;
+                return;
+            }
+            if (!mainDisplayValue.includes(dot)) {
+                mainDisplayValue += dot;
+            }
+        }
+
+        function handleOperator(nextOperator) {
+            const inputValue = parseFloat(mainDisplayValue);
+
+            if (operator && waitingForSecondOperand) {
+                operator = nextOperator;
+                historyDisplayValue = `${firstOperand} ${operator}`;
+                return;
+            }
+
+            if (firstOperand === null) {
+                firstOperand = inputValue;
+            } else if (operator) {
+                const result = performCalculation();
+                mainDisplayValue = String(result);
+                firstOperand = result;
+            }
+
+            waitingForSecondOperand = true;
+            operator = nextOperator;
+            historyDisplayValue = `${firstOperand} ${operator}`;
+        }
+        
+        function performCalculation() {
+            const inputValue = parseFloat(mainDisplayValue);
+            if (operator === null || firstOperand === null) return inputValue;
+            
+            let result = 0;
+            switch (operator) {
+                case '+': result = firstOperand + inputValue; break;
+                case '-': result = firstOperand - inputValue; break;
+                case '*': result = firstOperand * inputValue; break;
+                case '/': result = firstOperand / inputValue; break;
+                case '^': result = Math.pow(firstOperand, inputValue); break;
+                case '%': result = firstOperand % inputValue; break;
+                case 'yroot': result = Math.pow(firstOperand, 1 / inputValue); break;
+            }
+            historyDisplayValue = `${historyDisplayValue} ${inputValue} =`;
+            return result;
+        }
+
+        function handleFunction(func) {
+            let value = parseFloat(mainDisplayValue);
+            let result = 0;
+
+            const toRad = (deg) => deg * Math.PI / 180;
+            const toDeg = (rad) => rad * 180 / Math.PI;
+
+            switch(func) {
+                // Trig
+                case 'sin': result = angleMode === 'DEG' ? Math.sin(toRad(value)) : Math.sin(value); break;
+                case 'cos': result = angleMode === 'DEG' ? Math.cos(toRad(value)) : Math.cos(value); break;
+                case 'tan': result = angleMode === 'DEG' ? Math.tan(toRad(value)) : Math.tan(value); break;
+                case 'asin': result = Math.asin(value); if (angleMode === 'DEG') result = toDeg(result); break;
+                case 'acos': result = Math.acos(value); if (angleMode === 'DEG') result = toDeg(result); break;
+                case 'atan': result = Math.atan(value); if (angleMode === 'DEG') result = toDeg(result); break;
+                // Hyperbolic
+                case 'sinh': result = Math.sinh(value); break;
+                case 'cosh': result = Math.cosh(value); break;
+                case 'tanh': result = Math.tanh(value); break;
+                case 'asinh': result = Math.asinh(value); break;
+                case 'acosh': result = Math.acosh(value); break;
+                case 'atanh': result = Math.atanh(value); break;
+                // Power/Log
+                case 'sqrt': result = Math.sqrt(value); break;
+                case 'cbrt': result = Math.cbrt(value); break;
+                case 'pow2': result = Math.pow(value, 2); break;
+                case 'pow3': result = Math.pow(value, 3); break;
+                case 'pow10': result = Math.pow(10, value); break;
+                case 'reciprocal': result = 1 / value; break;
+                case 'ln': result = Math.log(value); break;
+                case 'log10': result = Math.log10(value); break;
+                case 'log2': result = Math.log2(value); break;
+                // Other
+                case 'factorial': 
+                    if (value < 0 || !Number.isInteger(value)) {
+                        result = 'Error';
+                    } else {
+                        let fact = 1;
+                        for (let i = 2; i <= value; i++) fact *= i;
+                        result = fact;
+                    }
+                    break;
+                case 'abs': result = Math.abs(value); break;
+                case 'percent':
+                    if (firstOperand) {
+                        result = (firstOperand * value) / 100;
+                    } else {
+                        result = value / 100;
+                    }
+                    break;
+                default: return;
+            }
+            mainDisplayValue = String(result);
+            historyDisplayValue = `${func}(${value}) =`;
+            waitingForSecondOperand = false;
+        }
+
+        function handleConstant(constant) {
+            if (constant === 'pi') mainDisplayValue = String(Math.PI);
+            if (constant === 'e') mainDisplayValue = String(Math.E);
+            waitingForSecondOperand = false;
+        }
+
+        function handleMemory(action) {
+            const currentValue = parseFloat(mainDisplayValue);
+            switch (action) {
+                case 'mclear': memory = 0; break;
+                case 'mrecall': mainDisplayValue = String(memory); break;
+                case 'mstore': memory = currentValue; break;
+                case 'madd': memory += currentValue; break;
+                case 'msub': memory -= currentValue; break;
+            }
+        }
+        
+        buttonsContainer.addEventListener('click', (event) => {
+            const button = event.target.closest('.calc-btn');
+            if (!button) return;
+
+            const { num, op, calc, func, constant } = button.dataset;
+
+            if (num) {
+                if (num === '.') {
+                    inputDecimal(num);
+                } else {
+                    inputDigit(num);
+                }
+            } else if (op) {
+                handleOperator(op);
+            } else if (func) {
+                handleFunction(func);
+            } else if (constant) {
+                handleConstant(constant);
+            } else if (calc) {
+                switch (calc) {
+                    case 'equals':
+                        if (operator && !waitingForSecondOperand) {
+                            const result = performCalculation();
+                            mainDisplayValue = String(result);
+                            firstOperand = null;
+                            operator = null;
+                            waitingForSecondOperand = true;
+                        }
+                        break;
+                    case 'clear':
+                        resetCalculator();
+                        break;
+                    case 'clear-entry':
+                        mainDisplayValue = '0';
+                        break;
+                    case 'backspace':
+                        mainDisplayValue = mainDisplayValue.slice(0, -1) || '0';
+                        break;
+                    case 'negate':
+                        mainDisplayValue = String(parseFloat(mainDisplayValue) * -1);
+                        break;
+                    case 'mclear':
+                    case 'mrecall':
+                    case 'mstore':
+                    case 'madd':
+                    case 'msub':
+                        handleMemory(calc);
+                        break;
+                }
+            }
+            updateDisplay();
+        });
+
+        angleRadios.forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                angleMode = event.target.value;
+            });
+        });
+
+        // Make calculator draggable
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        header.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - calculator.offsetLeft;
+            offsetY = e.clientY - calculator.offsetTop;
+            header.style.cursor = 'grabbing';
+            document.body.style.userSelect = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            calculator.style.left = `${e.clientX - offsetX}px`;
+            calculator.style.top = `${e.clientY - offsetY}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            header.style.cursor = 'move';
+            document.body.style.userSelect = '';
+        });
+    }
+
     // --- CORE EXAM LOGIC ---
     function showScreen(screenId) {
         document.body.classList.toggle('setup-active', screenId === 'setup-screen');
@@ -571,12 +1759,23 @@
         document.getElementById('final-score').textContent = score; 
         document.getElementById('correct-answers').textContent = correct; 
         document.getElementById('incorrect-answers').textContent = incorrect; 
-        renderMathInElement(reviewContainer);
+        renderKaTeXInElement(reviewContainer);
     }
     
     function renderSectionTabs() { const sectionTabsContainer = document.getElementById('section-tabs-container'); sectionTabsContainer.innerHTML = ''; examData.sections.forEach((section, index) => { const tab = document.createElement('button'); tab.innerHTML = `${section.name} <i class="fas fa-chevron-down text-xs ml-1"></i>`; tab.className = 'py-1 px-3 text-sm rounded-md transition'; tab.className += (index === currentSectionIndex) ? ' bg-blue-600 text-white' : ' bg-gray-200 text-gray-700'; tab.addEventListener('click', () => !isReviewMode && changeSection(index)); sectionTabsContainer.appendChild(tab); }); }
     function renderQuestionPalette() { const questionPalette = document.getElementById('question-palette'); const sectionInfo = findSectionForQuestion(currentQuestionIndex); const section = examData.sections[sectionInfo.sectionIndex]; let globalStartIndex = 0; for(let i = 0; i < sectionInfo.sectionIndex; i++) { globalStartIndex += examData.sections[i].questions; } questionPalette.innerHTML = ''; for (let i = 0; i < section.questions; i++) { const questionGlobalIndex = globalStartIndex + i; const button = document.createElement('button'); button.textContent = i + 1; button.className = 'question-palette-btn'; const status = state[questionGlobalIndex].status; if (status === 'answered') button.classList.add('palette-answered'); else if (status === 'not-answered') button.classList.add('palette-not-answered'); else if (status === 'marked') button.classList.add('palette-marked'); else if (status === 'answered-marked') button.classList.add('palette-answered-marked'); if (questionGlobalIndex === currentQuestionIndex) { button.classList.remove('palette-answered', 'palette-not-answered', 'palette-marked', 'palette-answered-marked'); button.classList.add('palette-current'); } button.title = status.replace('-', ' '); button.addEventListener('click', () => !isReviewMode && navigateToQuestion(sectionInfo.sectionIndex, i)); questionPalette.appendChild(button); } updateStatusCounts(); }
     function updateStatusCounts() { let counts = { answered: 0, 'not-answered': 0, 'not-visited': 0, marked: 0 }; state.forEach(q => { if (q.status === 'answered' || q.status === 'answered-marked') counts.answered++; if (q.status === 'not-answered') counts['not-answered']++; if (q.status === 'not-visited') counts['not-visited']++; if (q.status === 'marked' || q.status === 'answered-marked') counts.marked++; }); document.getElementById('answered-count').textContent = counts.answered; document.getElementById('not-answered-count').textContent = counts['not-answered']; document.getElementById('not-visited-count').textContent = counts['not-visited']; document.getElementById('marked-count').textContent = counts.marked; }
+    
+    function renderKaTeXInElement(elem) {
+        if (window.renderMathInElement) {
+            window.renderMathInElement(elem, {
+              delimiters: [
+                  {left: '\\(', right: '\\)', display: false},
+                  {left: '\\[', right: '\\]', display: true}
+              ]
+            });
+        }
+    }
     
     function renderQuestion() { 
         const questionData = examData.questions[currentQuestionIndex]; 
@@ -605,8 +1804,8 @@
                  state[currentQuestionIndex].selectedOption = e.target.value.trim();
              });
         }
-        renderMathInElement(optionsContainer);
-        renderMathInElement(document.getElementById('question-content'));
+        renderKaTeXInElement(optionsContainer);
+        renderKaTeXInElement(document.getElementById('question-content'));
     }
     
     function changeSection(sectionIndex) { navigateToQuestion(sectionIndex, 0); }
@@ -652,13 +1851,10 @@
         
         showScreen('setup-screen');
         renderPaperSelection();
+        initializeCalculator();
         
-        renderMathInElement(document.body, {
-          delimiters: [
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
-          ]
-        });
+        // This is a global call, but we re-run it on specific dynamic elements.
+        renderKaTeXInElement(document.body);
     });
     </script>
 </body>
